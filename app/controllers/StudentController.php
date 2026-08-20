@@ -18,7 +18,9 @@ class StudentController extends Controller
             'contact' => '09553164150'
         ];
 
-        $this->call->view('student/index', ['student' => $student]);
+        $this->call->view('index', [
+            'student' => $student
+        ]);
     }
 
     public function profile()
@@ -33,6 +35,8 @@ class StudentController extends Controller
             'contact' => '09553164150'
         ];
 
-        $this->call->view('student/profile', ['student' => $student]);
+        $this->call->view('profile', [
+            'student' => $student
+        ]);
     }
 }

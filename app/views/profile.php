@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Home</title>
+    <title>Student Profile</title>
 
     <style>
         * {
@@ -31,7 +31,6 @@
             color: white;
             font-size: 20px;
             font-weight: bold;
-            letter-spacing: 0.3px;
         }
 
         .nav-links {
@@ -53,75 +52,62 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 50px auto;
             padding: 20px;
         }
 
-        /* Middleware message */
-        .message {
-            background: #ecfdf5;
-            border: 1px solid #86efac;
-            color: #166534;
-            padding: 15px 18px;
-            border-radius: 10px;
-            margin-bottom: 22px;
-            font-size: 14px;
-            text-align: left;
-            box-shadow: 0 3px 12px rgba(22, 101, 52, 0.06);
-        }
-
-        .message strong {
-            display: block;
-            margin-bottom: 4px;
-            color: #14532d;
-        }
-
-        .welcome {
+        .profile {
             background: white;
             border-radius: 18px;
             padding: 45px;
             box-shadow: 0 8px 30px rgba(20, 83, 45, 0.08);
         }
 
-        .welcome-header {
+        .profile-header {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 30px;
+            gap: 22px;
             padding-bottom: 30px;
             border-bottom: 1px solid #dcfce7;
         }
 
-        .welcome-text h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            color: #14532d;
-        }
-
-        .welcome-text p {
-            color: #64748b;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
         .avatar {
-            width: 75px;
-            height: 75px;
+            width: 85px;
+            height: 85px;
             flex-shrink: 0;
             background: #16a34a;
             color: white;
-            border-radius: 18px;
+            border-radius: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 27px;
+            font-size: 30px;
             font-weight: bold;
             box-shadow: 0 6px 15px rgba(22, 163, 74, 0.2);
         }
 
-        .student-card {
-            margin-top: 30px;
+        .profile-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            color: #14532d;
+        }
+
+        .profile-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 14px;
+            color: #166534;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            font-weight: bold;
+        }
+
+        .profile-info {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
@@ -131,7 +117,7 @@
             background: #f8fffa;
             border: 1px solid #dcfce7;
             border-radius: 12px;
-            padding: 18px 20px;
+            padding: 19px 20px;
         }
 
         .info-box:hover {
@@ -154,29 +140,35 @@
         }
 
         .actions {
-            margin-top: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 30px;
         }
 
-        .status {
-            color: #64748b;
-            font-size: 13px;
+        .home-link {
+            color: #166534;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
         }
 
-        .button {
+        .home-link:hover {
+            color: #15803d;
+        }
+
+        .back-button {
             display: inline-block;
+            padding: 12px 19px;
             background: #16a34a;
             color: white;
             text-decoration: none;
-            padding: 13px 20px;
             border-radius: 9px;
             font-size: 14px;
             font-weight: bold;
         }
 
-        .button:hover {
+        .back-button:hover {
             background: #15803d;
         }
 
@@ -196,29 +188,33 @@
                 margin: 30px auto;
             }
 
-            .welcome {
+            .profile {
                 padding: 28px;
             }
 
-            .welcome-header {
+            .profile-header {
                 align-items: flex-start;
             }
 
-            .welcome-text h1 {
-                font-size: 25px;
+            .profile-header h1 {
+                font-size: 23px;
             }
 
-            .student-card {
+            .profile-info {
                 grid-template-columns: 1fr;
             }
 
             .actions {
-                flex-direction: column;
+                flex-direction: column-reverse;
                 align-items: stretch;
                 gap: 15px;
             }
 
-            .button {
+            .back-button {
+                text-align: center;
+            }
+
+            .home-link {
                 text-align: center;
             }
         }
@@ -228,85 +224,98 @@
 <body>
 
     <nav class="navbar">
-        <div class="logo">Student Portal</div>
+
+        <div class="logo">
+            Student Portal
+        </div>
 
         <div class="nav-links">
             <a href="<?= site_url('student'); ?>">Home</a>
             <a href="<?= site_url('student/profile'); ?>">Profile</a>
         </div>
+
     </nav>
 
     <main class="container">
 
-        <?php if (isset($_SESSION['middleware_message'])): ?>
-            <div class="message">
-                <strong>Access Notice</strong>
-                <?= $_SESSION['middleware_message']; ?>
-            </div>
-            <?php unset($_SESSION['middleware_message']); ?>
-        <?php endif; ?>
+        <section class="profile">
 
-        <section class="welcome">
+            <div class="profile-header">
 
-            <div class="welcome-header">
+                <div class="avatar">
+                    <?= strtoupper(substr($student['name'] ?? 'Student', 0, 1)); ?>
+                </div>
 
-                <div class="welcome-text">
-                    <h1>Welcome, <?= $student['name']; ?>!</h1>
+                <div>
+                    <h1>
+                        <?= htmlspecialchars($student['name'] ?? 'Student'); ?>
+                    </h1>
 
                     <p>
-                        Welcome to your student information page.
-                        You can view your student details and profile here.
+                        <?= htmlspecialchars($student['course'] ?? 'BS Information Technology'); ?>
                     </p>
                 </div>
 
-                <div class="avatar">
-                    <?= strtoupper(substr($student['name'], 0, 1)); ?>
-                </div>
-
             </div>
 
-            <div class="student-card">
+            <div class="section-title">
+                Student Information
+            </div>
+
+            <div class="profile-info">
 
                 <div class="info-box">
                     <span class="label">Student ID</span>
-                    <span class="value"><?= $student['student_id']; ?></span>
-                </div>
-
-                <div class="info-box">
-                    <span class="label">Course</span>
-                    <span class="value"><?= $student['course']; ?></span>
+                    <span class="value">
+                        <?= htmlspecialchars($student['student_id'] ?? 'N/A'); ?>
+                    </span>
                 </div>
 
                 <div class="info-box">
                     <span class="label">Year Level</span>
-                    <span class="value"><?= $student['year']; ?></span>
+                    <span class="value">
+                        <?= htmlspecialchars($student['year'] ?? 'N/A'); ?>
+                    </span>
                 </div>
 
                 <div class="info-box">
                     <span class="label">Section</span>
-                    <span class="value"><?= $student['section']; ?></span>
+                    <span class="value">
+                        <?= htmlspecialchars($student['section'] ?? 'N/A'); ?>
+                    </span>
+                </div>
+
+                <div class="info-box">
+                    <span class="label">Course</span>
+                    <span class="value">
+                        <?= htmlspecialchars($student['course'] ?? 'N/A'); ?>
+                    </span>
                 </div>
 
                 <div class="info-box">
                     <span class="label">Email</span>
-                    <span class="value"><?= $student['email']; ?></span>
+                    <span class="value">
+                        <?= htmlspecialchars($student['email'] ?? 'N/A'); ?>
+                    </span>
                 </div>
 
                 <div class="info-box">
                     <span class="label">Contact Number</span>
-                    <span class="value"><?= $student['contact']; ?></span>
+                    <span class="value">
+                        <?= htmlspecialchars($student['contact'] ?? 'N/A'); ?>
+                    </span>
                 </div>
 
             </div>
 
             <div class="actions">
 
-                <span class="status">
-                    Student Information System
-                </span>
+                <a class="home-link" href="<?= site_url('student'); ?>">
+                    ← Return to Student Home
+                </a>
 
-                <a class="button" href="<?= site_url('student/profile'); ?>">
-                    View Student Profile →
+                <a class="back-button" href="<?= site_url('student'); ?>">
+                    Back to Home
                 </a>
 
             </div>

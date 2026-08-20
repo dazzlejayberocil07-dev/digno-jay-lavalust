@@ -83,7 +83,6 @@ $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') 
                     . '://' . $_SERVER['HTTP_HOST']
                     . (($_SERVER['HTTP_HOST'] === 'localhost') ? '/LavaLust/' : '/');
 
-
 /*
 |--------------------------------------------------------------------------
 | Static File Proxies
