@@ -1,8 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Student Home</title>
 
     <style>
@@ -17,6 +20,10 @@
             background: #f0fdf4;
             color: #1f2937;
         }
+
+        /* =========================
+           NAVBAR
+        ========================= */
 
         .navbar {
             background: #14532d;
@@ -45,6 +52,7 @@
             padding: 9px 15px;
             border-radius: 7px;
             font-size: 14px;
+            transition: 0.2s ease;
         }
 
         .nav-links a:hover {
@@ -52,11 +60,24 @@
             color: white;
         }
 
+        .nav-links a.active {
+            background: #166534;
+            color: white;
+        }
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
         .container {
             max-width: 1000px;
             margin: 50px auto;
             padding: 20px;
         }
+
+        /* =========================
+           MIDDLEWARE MESSAGE
+        ========================= */
 
         .message {
             background: #ecfdf5;
@@ -75,6 +96,10 @@
             margin-bottom: 4px;
             color: #14532d;
         }
+
+        /* =========================
+           WELCOME CARD
+        ========================= */
 
         .welcome {
             background: white;
@@ -104,6 +129,10 @@
             line-height: 1.6;
         }
 
+        /* =========================
+           AVATAR
+        ========================= */
+
         .avatar {
             width: 75px;
             height: 75px;
@@ -119,6 +148,10 @@
             box-shadow: 0 6px 15px rgba(22, 163, 74, 0.2);
         }
 
+        /* =========================
+           STUDENT INFORMATION
+        ========================= */
+
         .student-card {
             margin-top: 30px;
             display: grid;
@@ -131,10 +164,12 @@
             border: 1px solid #dcfce7;
             border-radius: 12px;
             padding: 18px 20px;
+            transition: 0.2s ease;
         }
 
         .info-box:hover {
             border-color: #86efac;
+            transform: translateY(-1px);
         }
 
         .label {
@@ -152,16 +187,26 @@
             font-weight: bold;
         }
 
+        /* =========================
+           ACTIONS
+        ========================= */
+
         .actions {
             margin-top: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
         }
 
         .status {
             color: #64748b;
             font-size: 13px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
         }
 
         .button {
@@ -173,11 +218,25 @@
             border-radius: 9px;
             font-size: 14px;
             font-weight: bold;
+            transition: 0.2s ease;
+            white-space: nowrap;
         }
 
         .button:hover {
             background: #15803d;
         }
+
+        .button.users {
+            background: #14532d;
+        }
+
+        .button.users:hover {
+            background: #166534;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
@@ -186,13 +245,48 @@
             margin-top: 35px;
         }
 
-        @media (max-width: 650px) {
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
+
             .navbar {
                 padding: 0 5%;
             }
 
             .container {
+                margin: 35px auto;
+                padding: 15px;
+            }
+
+            .welcome {
+                padding: 32px;
+            }
+
+            .welcome-text h1 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                height: auto;
+                min-height: 70px;
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .container {
                 margin: 30px auto;
+                padding: 15px;
             }
 
             .welcome {
@@ -217,14 +311,54 @@
                 gap: 15px;
             }
 
+            .status {
+                text-align: center;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
             .button {
                 text-align: center;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .welcome {
+                padding: 22px;
+            }
+
+            .welcome-header {
+                gap: 15px;
+            }
+
+            .avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 22px;
+                border-radius: 14px;
+            }
+
+            .welcome-text h1 {
+                font-size: 22px;
+            }
+
+            .welcome-text p {
+                font-size: 14px;
             }
         }
     </style>
 </head>
 
 <body>
+
+    <!-- =========================
+         NAVIGATION BAR
+    ========================== -->
 
     <nav class="navbar">
 
@@ -233,13 +367,38 @@
         </div>
 
         <div class="nav-links">
-            <a href="<?= site_url('student'); ?>">Home</a>
-            <a href="<?= site_url('student/profile'); ?>">Profile</a>
+
+            <a
+                href="<?= site_url('student'); ?>"
+                class="active"
+            >
+                Home
+            </a>
+
+            <a
+                href="<?= site_url('student/profile'); ?>"
+            >
+                Profile
+            </a>
+
+            <a
+                href="<?= site_url('users'); ?>"
+            >
+                Users
+            </a>
+
         </div>
 
     </nav>
 
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
     <main class="container">
+
+        <!-- Middleware Message -->
 
         <?php if (isset($_SESSION['middleware_message'])): ?>
 
@@ -257,6 +416,8 @@
 
         <?php endif; ?>
 
+
+        <!-- Welcome Section -->
 
         <section class="welcome">
 
@@ -291,6 +452,8 @@
 
             </div>
 
+
+            <!-- Student Information -->
 
             <div class="student-card">
 
@@ -374,23 +537,39 @@
             </div>
 
 
+            <!-- Action Buttons -->
+
             <div class="actions">
 
                 <span class="status">
                     Student Information System
                 </span>
 
-                <a
-                    class="button"
-                    href="<?= site_url('student/profile'); ?>"
-                >
-                    View Student Profile →
-                </a>
+
+                <div class="action-buttons">
+
+                    <a
+                        class="button"
+                        href="<?= site_url('student/profile'); ?>"
+                    >
+                        View Profile →
+                    </a>
+
+                    <a
+                        class="button users"
+                        href="<?= site_url('users'); ?>"
+                    >
+                        Users List →
+                    </a>
+
+                </div>
 
             </div>
 
         </section>
 
+
+        <!-- Footer -->
 
         <footer>
             Student Information System
@@ -400,3 +579,4 @@
 
 </body>
 </html>
+

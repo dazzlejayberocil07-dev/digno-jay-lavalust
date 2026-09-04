@@ -39,4 +39,4 @@ class StudentController extends Controller
             'student' => $student
         ]);
     }
-}
+} 
