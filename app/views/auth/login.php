@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login</title>
+    <title>Login | Student Portal</title>
 
     <style>
 
@@ -17,9 +18,9 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0d0d12;
-            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
+            color: #1f2937;
             min-height: 100vh;
 
             display: flex;
@@ -33,27 +34,49 @@
             width: 100%;
             max-width: 420px;
 
-            background: #15151d;
-            border: 1px solid #292933;
+            background: white;
 
-            border-radius: 20px;
+            border: 1px solid #dcfce7;
+
+            border-radius: 18px;
+
             padding: 35px;
 
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 8px 30px rgba(20, 83, 45, .08);
+        }
+
+        .logo {
+            text-align: center;
+
+            color: #14532d;
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin-bottom: 25px;
         }
 
         .login-header {
-            margin-bottom: 30px;
+            margin-bottom: 28px;
+
+            text-align: center;
         }
 
         .login-header h1 {
-            font-size: 32px;
+            color: #14532d;
+
+            font-size: 30px;
+
             margin-bottom: 8px;
         }
 
         .login-header p {
-            color: #999;
+            color: #64748b;
+
             font-size: 14px;
+
+            line-height: 1.5;
         }
 
         .form-group {
@@ -63,13 +86,15 @@
         label {
             display: block;
 
-            color: #777;
+            color: #14532d;
 
             font-size: 12px;
 
+            font-weight: bold;
+
             text-transform: uppercase;
 
-            letter-spacing: 1px;
+            letter-spacing: 0.05em;
 
             margin-bottom: 9px;
         }
@@ -79,23 +104,31 @@
 
             padding: 13px 15px;
 
-            background: #0d0d12;
+            background: #f8fffa;
 
-            color: #f5f5f5;
+            color: #1f2937;
 
-            border: 1px solid #33333d;
+            border: 1px solid #dcfce7;
 
             border-radius: 8px;
 
             font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+        input::placeholder {
+            color: #94a3b8;
         }
 
         input:focus {
             outline: none;
 
-            border-color: #2589ff;
+            border-color: #86efac;
 
-            box-shadow: 0 0 0 2px rgba(37, 137, 255, 0.08);
+            background: white;
+
+            box-shadow: 0 0 0 3px rgba(134, 239, 172, 0.2);
         }
 
         .login-button {
@@ -103,9 +136,9 @@
 
             padding: 13px;
 
-            background: #ffffff;
+            background: #16a34a;
 
-            color: #0d0d12;
+            color: white;
 
             border: none;
 
@@ -117,21 +150,23 @@
 
             font-size: 14px;
 
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .login-button:hover {
-            background: #2589ff;
+            background: #15803d;
+        }
 
-            color: #ffffff;
+        .login-button:active {
+            transform: translateY(1px);
         }
 
         .error {
-            background: #211518;
+            background: #fef2f2;
 
-            color: #ff6b6b;
+            color: #b91c1c;
 
-            border: 1px solid #4a2727;
+            border: 1px solid #fecaca;
 
             padding: 12px;
 
@@ -140,24 +175,38 @@
             margin-bottom: 20px;
 
             font-size: 13px;
+
+            line-height: 1.5;
         }
 
-        .credentials {
-            margin-top: 20px;
+        .footer {
+            text-align: center;
 
-            padding: 12px;
+            margin-top: 25px;
 
-            background: #111118;
+            padding-top: 20px;
 
-            border: 1px solid #292933;
+            border-top: 1px solid #dcfce7;
 
-            border-radius: 8px;
-
-            color: #888;
+            color: #6b7280;
 
             font-size: 12px;
+        }
 
-            line-height: 1.6;
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .login-card {
+                padding: 28px 22px;
+            }
+
+            .login-header h1 {
+                font-size: 26px;
+            }
+
         }
 
     </style>
@@ -168,12 +217,17 @@
 
     <div class="login-card">
 
+        <div class="logo">
+            Student Portal
+        </div>
+
+
         <div class="login-header">
 
             <h1>Login</h1>
 
             <p>
-                Login to access Product Management.
+                Login to access the Student Portal.
             </p>
 
         </div>
@@ -237,12 +291,9 @@
         </form>
 
 
-        <div class="credentials">
+        <div class="footer">
 
-            <strong>Laboratory Account</strong><br>
-
-            Username: admin<br>
-            Password: admin123
+            Student Information System &copy; <?= date('Y'); ?>
 
         </div>
 
@@ -251,3 +302,4 @@
 </body>
 
 </html>
+
