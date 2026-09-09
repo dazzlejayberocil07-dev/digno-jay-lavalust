@@ -1,3 +1,4 @@
+```php
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Product Management</title>
+    <title>Products | Product Management</title>
 
     <style>
         * {
@@ -15,193 +16,443 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            color: #333;
-        }
-
-        .layout {
-            display: flex;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
-            width: 240px;
-            background: #1e293b;
-            color: white;
-            padding: 25px 15px;
             position: fixed;
             left: 0;
             top: 0;
-            bottom: 0;
+            width: 240px;
+            height: 100vh;
+            background: #111827;
+            padding: 25px 18px;
+            z-index: 10;
         }
 
         .logo {
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px 30px;
+            color: white;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .logo-text h2 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: #9ca3af;
         }
 
         .menu-title {
-            font-size: 12px;
-            color: #94a3b8;
-            margin: 20px 10px 8px;
+            font-size: 10px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #6b7280;
+            padding: 0 12px;
+            margin: 10px 0;
         }
 
-        .sidebar a {
-            display: block;
-            color: #cbd5e1;
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            color: #9ca3af;
             text-decoration: none;
-            padding: 12px 15px;
             border-radius: 8px;
-            margin-bottom: 5px;
-            transition: 0.2s;
+            font-size: 14px;
+            transition: 0.2s ease;
         }
 
-        .sidebar a:hover,
-        .sidebar a.active {
+        .menu a:hover {
+            background: #1f2937;
+            color: white;
+        }
+
+        .menu a.active {
             background: #2563eb;
             color: white;
         }
 
-        /* MAIN CONTENT */
+        .menu-icon {
+            width: 22px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
 
         .main {
             margin-left: 240px;
-            width: calc(100% - 240px);
+            min-height: 100vh;
             padding: 30px;
         }
+
+        /* =========================
+           TOP BAR
+        ========================= */
 
         .topbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
-        .topbar h1 {
-            font-size: 28px;
+        .page-title h1 {
+            font-size: 25px;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .page-title p {
+            color: #6b7280;
+            font-size: 14px;
         }
 
         .add-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
             background: #2563eb;
             color: white;
             text-decoration: none;
-            padding: 11px 18px;
+            padding: 10px 16px;
             border-radius: 7px;
-            font-weight: bold;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s ease;
         }
 
         .add-button:hover {
             background: #1d4ed8;
         }
 
-        /* CARD */
+        /* =========================
+           CARD
+        ========================= */
 
         .card {
             background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
         }
 
         .card-header {
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 24px;
+            border-bottom: 1px solid #e5e7eb;
         }
 
-        .card-header h2 {
-            font-size: 20px;
+        .card-title h2 {
+            font-size: 17px;
+            color: #111827;
+            margin-bottom: 4px;
         }
 
-        .card-header p {
-            color: #64748b;
-            margin-top: 5px;
+        .card-title p {
+            color: #6b7280;
+            font-size: 13px;
         }
 
-        /* TABLE */
+        .record-count {
+            padding: 7px 12px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
 
         .table-wrapper {
+            width: 100%;
             overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-        }
-
-        th,
-        td {
-            padding: 14px;
-            border-bottom: 1px solid #e5e7eb;
-            text-align: left;
+            min-width: 850px;
         }
 
         th {
-            background: #f8fafc;
-            font-size: 13px;
+            background: #f9fafb;
+            color: #6b7280;
+            text-align: left;
+            padding: 14px 20px;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            color: #475569;
+            letter-spacing: 0.05em;
+            border-bottom: 1px solid #e5e7eb;
         }
 
-        tr:hover {
+        td {
+            padding: 15px 20px;
+            font-size: 13px;
+            color: #374151;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        tbody tr {
+            transition: 0.15s ease;
+        }
+
+        tbody tr:hover {
             background: #f8fafc;
         }
 
-        /* ACTION BUTTONS */
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* =========================
+           TABLE DATA
+        ========================= */
+
+        .product-id {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .product-name {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .description {
+            color: #6b7280;
+            max-width: 260px;
+        }
+
+        .price {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .quantity {
+            display: inline-block;
+            padding: 5px 9px;
+            background: #f3f4f6;
+            color: #374151;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .created {
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        /* =========================
+           ACTION BUTTONS
+        ========================= */
 
         .actions {
             display: flex;
-            gap: 8px;
+            gap: 7px;
+        }
+
+        .edit,
+        .delete {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 11px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.2s ease;
         }
 
         .edit {
             background: #f59e0b;
             color: white;
-            padding: 7px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 13px;
-        }
-
-        .delete {
-            background: #dc2626;
-            color: white;
-            padding: 7px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 13px;
         }
 
         .edit:hover {
             background: #d97706;
         }
 
+        .delete {
+            background: #dc2626;
+            color: white;
+        }
+
         .delete:hover {
             background: #b91c1c;
         }
 
-        /* MOBILE */
+        /* =========================
+           EMPTY STATE
+        ========================= */
 
-        @media (max-width: 768px) {
+        .empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: #6b7280;
+        }
+
+        .empty-icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .empty p {
+            font-size: 13px;
+        }
+
+        /* =========================
+           CARD FOOTER
+        ========================= */
+
+        .card-footer {
+            padding: 18px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-footer p {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 13px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 800px) {
 
             .sidebar {
-                width: 200px;
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 10px 0 25px;
+            }
+
+            .logo-text,
+            .menu-title,
+            .menu a span {
+                display: none;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 13px;
             }
 
             .main {
-                margin-left: 200px;
-                width: calc(100% - 200px);
+                margin-left: 70px;
                 padding: 20px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .page-title h1 {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .main {
+                padding: 15px;
             }
 
             .topbar {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
+            }
+
+            .add-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .card-header {
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .back-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -212,67 +463,124 @@
 
 <div class="layout">
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
     <aside class="sidebar">
 
         <div class="logo">
-            Product System
+
+            <div class="logo-icon">
+                PS
+            </div>
+
+            <div class="logo-text">
+                <h2>Product System</h2>
+                <span>LavaLust System</span>
+            </div>
+
         </div>
+
 
         <div class="menu-title">
             Main
         </div>
 
-        <a href="<?= site_url('products'); ?>" class="active">
-            📦 Products
-        </a>
 
-        <a href="<?= site_url('products/create'); ?>">
-            ➕ Add Product
-        </a>
+        <nav class="menu">
+
+            <a href="<?= site_url('products'); ?>" class="active">
+
+                <span class="menu-icon">
+                    📦
+                </span>
+
+                <span>
+                    Products
+                </span>
+
+            </a>
+
+
+            <a href="<?= site_url('products/create'); ?>">
+
+                <span class="menu-icon">
+                    ➕
+                </span>
+
+                <span>
+                    Add Product
+                </span>
+
+            </a>
+
+        </nav>
+
 
         <div class="menu-title">
             System
         </div>
 
-        <a href="#">
-            👤 Users
-        </a>
 
-        <a href="#">
-            ⚙️ Settings
-        </a>
+        <nav class="menu">
 
-        <a href="#">
-            🚪 Logout
-        </a>
+            <a href="#">
+
+                <span class="menu-icon">
+                    👤
+                </span>
+
+                <span>
+                    Users
+                </span>
+
+            </a>
+
+
+            <a href="#">
+
+                <span class="menu-icon">
+                    ⚙️
+                </span>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <a href="#">
+
+                <span class="menu-icon">
+                    🚪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </nav>
 
     </aside>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
 
     <main class="main">
 
+        <!-- TOP BAR -->
+
         <div class="topbar">
 
-            <div>
+            <div class="page-title">
+
                 <h1>Products</h1>
-            </div>
-
-            <a href="<?= site_url('products/create'); ?>" class="add-button">
-                + Add Product
-            </a>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>Product Management</h2>
 
                 <p>
                     Manage your products, inventory, prices and quantities.
@@ -281,6 +589,47 @@
             </div>
 
 
+            <a
+                href="<?= site_url('products/create'); ?>"
+                class="add-button">
+
+                + Add Product
+
+            </a>
+
+        </div>
+
+
+        <!-- PRODUCT CARD -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <h2>
+                        Product Management
+                    </h2>
+
+                    <p>
+                        View and manage all products stored in the system.
+                    </p>
+
+                </div>
+
+
+                <div class="record-count">
+
+                    <?= count($products); ?> Records
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
             <div class="table-wrapper">
 
                 <table>
@@ -288,63 +637,125 @@
                     <thead>
 
                         <tr>
+
                             <th>ID</th>
+
                             <th>Product Name</th>
+
                             <th>Description</th>
+
                             <th>Price</th>
+
                             <th>Quantity</th>
+
                             <th>Created</th>
+
                             <th>Actions</th>
+
                         </tr>
 
                     </thead>
 
+
                     <tbody>
 
-                    <?php foreach ($products as $product): ?>
+                    <?php if (!empty($products)): ?>
+
+                        <?php foreach ($products as $product): ?>
+
+                            <tr>
+
+                                <td class="product-id">
+
+                                    #<?= htmlspecialchars($product['id']) ?>
+
+                                </td>
+
+
+                                <td class="product-name">
+
+                                    <?= htmlspecialchars($product['product_name']) ?>
+
+                                </td>
+
+
+                                <td class="description">
+
+                                    <?= htmlspecialchars($product['description']) ?>
+
+                                </td>
+
+
+                                <td class="price">
+
+                                    ₱<?= htmlspecialchars($product['price']) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <span class="quantity">
+
+                                        <?= htmlspecialchars($product['quantity']) ?>
+
+                                    </span>
+
+                                </td>
+
+
+                                <td class="created">
+
+                                    <?= htmlspecialchars($product['created_at']) ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <a
+                                            href="<?= site_url('products/edit/' . $product['id']); ?>"
+                                            class="edit">
+
+                                            Edit
+
+                                        </a>
+
+
+                                        <a
+                                            href="<?= site_url('products/delete/' . $product['id']); ?>"
+                                            class="delete"
+                                            onclick="return confirm('Are you sure you want to delete this product?');">
+
+                                            Delete
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
 
                         <tr>
 
-                            <td>
-                                <?= htmlspecialchars($product['id']) ?>
-                            </td>
+                            <td colspan="7">
 
-                            <td>
-                                <?= htmlspecialchars($product['product_name']) ?>
-                            </td>
+                                <div class="empty">
 
-                            <td>
-                                <?= htmlspecialchars($product['description']) ?>
-                            </td>
+                                    <div class="empty-icon">
+                                        📦
+                                    </div>
 
-                            <td>
-                                ₱<?= htmlspecialchars($product['price']) ?>
-                            </td>
-
-                            <td>
-                                <?= htmlspecialchars($product['quantity']) ?>
-                            </td>
-
-                            <td>
-                                <?= htmlspecialchars($product['created_at']) ?>
-                            </td>
-
-                            <td>
-
-                                <div class="actions">
-
-                                    <a
-                                        href="<?= site_url('products/edit/' . $product['id']); ?>"
-                                        class="edit">
-                                        Edit
-                                    </a>
-
-                                    <a
-                                        href="<?= site_url('products/delete/' . $product['id']); ?>"
-                                        class="delete"
-                                        onclick="return confirm('Are you sure you want to delete this product?');">
-                                        Delete
-                                    </a>
+                                    <p>
+                                        No products found.
+                                    </p>
 
                                 </div>
 
@@ -352,7 +763,7 @@
 
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php endif; ?>
 
                     </tbody>
 
@@ -360,7 +771,26 @@
 
             </div>
 
-        </div>
+
+            <!-- FOOTER -->
+
+            <div class="card-footer">
+
+                <p>
+                    Product records are retrieved dynamically from the MySQL database.
+                </p>
+
+                <a
+                    href="<?= site_url('products/create'); ?>"
+                    class="back-btn">
+
+                    + Add Product
+
+                </a>
+
+            </div>
+
+        </section>
 
     </main>
 
@@ -369,3 +799,4 @@
 </body>
 
 </html>
+```

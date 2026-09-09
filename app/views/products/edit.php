@@ -1,3 +1,4 @@
+```php
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit Product</title>
+    <title>Edit Product | Product Management</title>
 
     <style>
         * {
@@ -25,346 +26,9 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
-
-        .sidebar {
-            width: 240px;
-            background: #1e293b;
-            color: white;
-            padding: 25px 15px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .menu-title {
-            font-size: 12px;
-            color: #94a3b8;
-            margin: 20px 10px 8px;
-            text-transform: uppercase;
-        }
-
-        .sidebar a {
-            display: block;
-            color: #cbd5e1;
-            text-decoration: none;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin-bottom: 5px;
-        }
-
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        /* MAIN */
-
-        .main {
-            margin-left: 240px;
-            width: calc(100% - 240px);
-            padding: 30px;
-        }
-
-        .topbar {
-            margin-bottom: 25px;
-        }
-
-        .topbar h1 {
-            font-size: 28px;
-        }
-
-        .topbar p {
-            color: #64748b;
-            margin-top: 5px;
-        }
-
-        /* FORM */
-
-        .card {
-            background: white;
-            max-width: 800px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            font-size: 15px;
-        }
-
-        textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        button,
-        .cancel {
-            padding: 12px 20px;
-            border-radius: 7px;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        button {
-            background: #2563eb;
-            color: white;
-        }
-
-        button:hover {
-            background: #1d4ed8;
-        }
-
-        .cancel {
-            background: #64748b;
-            color: white;
-        }
-
-        .cancel:hover {
-            background: #475569;
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
-            }
-
-            .main {
-                margin-left: 200px;
-                width: calc(100% - 200px);
-                padding: 20px;
-            }
-        }
-    </style>
-
-</head>
-
-<body>
-
-<div class="layout">
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="logo">
-            Product System
-        </div>
-
-        <div class="menu-title">
-            Main
-        </div>
-
-        <a href="<?= site_url('products'); ?>">
-            📦 Products
-        </a>
-
-        <a href="<?= site_url('products/create'); ?>">
-            ➕ Add Product
-        </a>
-
-        <div class="menu-title">
-            System
-        </div>
-
-        <a href="#">
-            👤 Users
-        </a>
-
-        <a href="#">
-            ⚙️ Settings
-        </a>
-
-        <a href="#">
-            🚪 Logout
-        </a>
-
-    </aside>
-
-
-    <!-- MAIN -->
-
-    <main class="main">
-
-        <div class="topbar">
-
-            <h1>Edit Product</h1>
-
-            <p>
-                Update the information of this product.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <form
-                action="<?= site_url('products/update/' . $product['id']); ?>"
-                method="POST"
-            >
-
-                <div class="form-group">
-
-                    <label for="product_name">
-                        Product Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="product_name"
-                        name="product_name"
-                        value="<?= htmlspecialchars($product['product_name']); ?>"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="description">
-                        Description
-                    </label>
-
-                    <textarea
-                        id="description"
-                        name="description"
-                    ><?= htmlspecialchars($product['description']); ?></textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="price">
-                        Price
-                    </label>
-
-                    <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        step="0.01"
-                        min="0"
-                        value="<?= htmlspecialchars($product['price']); ?>"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="quantity">
-                        Quantity
-                    </label>
-
-                    <input
-                        type="number"
-                        id="quantity"
-                        name="quantity"
-                        min="0"
-                        value="<?= htmlspecialchars($product['quantity']); ?>"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="buttons">
-
-                    <button type="submit">
-                        Update Product
-                    </button>
-
-                    <a
-                        href="<?= site_url('products'); ?>"
-                        class="cancel">
-                        Cancel
-                    </a>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </main>
-
-</div>
-
-</body>
-
-</html> 
-Gade
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Product Management</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            color: #333;
-        }
-
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* SIDEBAR */
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
             width: 240px;
@@ -407,13 +71,19 @@ Gade
             color: white;
         }
 
-        /* MAIN CONTENT */
+        /* =========================
+           MAIN CONTENT
+        ========================= */
 
         .main {
             margin-left: 240px;
             width: calc(100% - 240px);
             padding: 30px;
         }
+
+        /* =========================
+           TOP BAR
+        ========================= */
 
         .topbar {
             display: flex;
@@ -424,106 +94,177 @@ Gade
 
         .topbar h1 {
             font-size: 28px;
+            color: #333;
         }
 
-        .add-button {
-            background: #2563eb;
+        .topbar p {
+            color: #64748b;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-button {
+            background: #64748b;
             color: white;
             text-decoration: none;
-            padding: 11px 18px;
+            padding: 10px 16px;
             border-radius: 7px;
             font-weight: bold;
+            font-size: 13px;
+            transition: 0.2s;
         }
 
-        .add-button:hover {
-            background: #1d4ed8;
+        .back-button:hover {
+            background: #475569;
         }
 
-        /* CARD */
+        /* =========================
+           FORM CARD
+        ========================= */
 
         .card {
             background: white;
+            max-width: 850px;
             border-radius: 12px;
-            padding: 25px;
+            padding: 0;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
         }
 
         .card-header {
-            margin-bottom: 20px;
+            padding: 25px 30px;
+            border-bottom: 1px solid #e5e7eb;
         }
 
         .card-header h2 {
             font-size: 20px;
+            color: #1f2937;
         }
 
         .card-header p {
             color: #64748b;
             margin-top: 5px;
+            font-size: 14px;
         }
 
-        /* TABLE */
+        /* =========================
+           FORM
+        ========================= */
 
-        .table-wrapper {
-            overflow-x: auto;
+        .form-body {
+            padding: 30px;
         }
 
-        table {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
             width: 100%;
-            border-collapse: collapse;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            color: #333;
+            transition: 0.2s;
         }
 
-        th,
-        td {
-            padding: 14px;
-            border-bottom: 1px solid #e5e7eb;
-            text-align: left;
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
         }
 
-        th {
-            background: #f8fafc;
-            font-size: 13px;
-            text-transform: uppercase;
-            color: #475569;
+        textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
-        tr:hover {
-            background: #f8fafc;
+        /* =========================
+           PRICE & QUANTITY
+        ========================= */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        /* ACTION BUTTONS */
+        /* =========================
+           BUTTONS
+        ========================= */
 
-        .actions {
+        .buttons {
             display: flex;
-            gap: 8px;
+            gap: 10px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
         }
 
-        .edit {
-            background: #f59e0b;
-            color: white;
-            padding: 7px 12px;
-            border-radius: 5px;
+        button,
+        .cancel {
+            padding: 11px 18px;
+            border-radius: 7px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
             text-decoration: none;
             font-size: 13px;
+            transition: 0.2s;
         }
 
-        .delete {
-            background: #dc2626;
+        button {
+            background: #2563eb;
             color: white;
-            padding: 7px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 13px;
         }
 
-        .edit:hover {
-            background: #d97706;
+        button:hover {
+            background: #1d4ed8;
         }
 
-        .delete:hover {
-            background: #b91c1c;
+        .cancel {
+            background: #64748b;
+            color: white;
         }
 
-        /* MOBILE */
+        .cancel:hover {
+            background: #475569;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .card-footer {
+            padding: 18px 30px;
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .card-footer p {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 768px) {
 
@@ -542,6 +283,75 @@ Gade
                 align-items: flex-start;
                 gap: 15px;
             }
+
+            .card {
+                max-width: 100%;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 10px;
+            }
+
+            .logo {
+                font-size: 0;
+                margin-bottom: 30px;
+            }
+
+            .logo::before {
+                content: "PS";
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .menu-title {
+                display: none;
+            }
+
+            .sidebar a {
+                padding: 12px 8px;
+                text-align: center;
+                font-size: 0;
+            }
+
+            .sidebar a::first-letter {
+                font-size: 18px;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 15px;
+            }
+
+            .topbar h1 {
+                font-size: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .card-header,
+            .form-body,
+            .card-footer {
+                padding: 20px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button,
+            .cancel {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 
@@ -551,7 +361,9 @@ Gade
 
 <div class="layout">
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
 
     <aside class="sidebar">
 
@@ -590,112 +402,163 @@ Gade
     </aside>
 
 
-    <!-- MAIN CONTENT -->
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
 
     <main class="main">
+
+        <!-- TOP BAR -->
 
         <div class="topbar">
 
             <div>
-                <h1>Products</h1>
+
+                <h1>Edit Product</h1>
+
+                <p>
+                    Update the information of this product.
+                </p>
+
             </div>
 
-            <a href="<?= site_url('products/create'); ?>" class="add-button">
-                + Add Product
+            <a
+                href="<?= site_url('products'); ?>"
+                class="back-button">
+                ← Back to Products
             </a>
 
         </div>
 
 
+        <!-- FORM CARD -->
+
         <div class="card">
 
             <div class="card-header">
 
-                <h2>Product Management</h2>
+                <h2>Product Information</h2>
 
                 <p>
-                    Manage your products, inventory, prices and quantities.
+                    Modify the product details below and save your changes.
                 </p>
 
             </div>
 
 
-            <div class="table-wrapper">
+            <div class="form-body">
 
-                <table>
+                <form
+                    action="<?= site_url('products/update/' . $product['id']); ?>"
+                    method="POST"
+                >
 
-                    <thead>
+                    <!-- PRODUCT NAME -->
 
-                        <tr>
-                            <th>ID</th>
-                            <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Created</th>
-                            <th>Actions</th>
-                        </tr>
+                    <div class="form-group">
 
-                    </thead>
+                        <label for="product_name">
+                            Product Name
+                        </label>
 
-                    <tbody>
+                        <input
+                            type="text"
+                            id="product_name"
+                            name="product_name"
+                            value="<?= htmlspecialchars($product['product_name']); ?>"
+                            required
+                        >
 
-                    <?php foreach ($products as $product): ?>
+                    </div>
 
-                        <tr>
 
-                            <td>
-                                <?= htmlspecialchars($product['id']) ?>
-                            </td>
+                    <!-- DESCRIPTION -->
 
-                            <td>
-                                <?= htmlspecialchars($product['product_name']) ?>
-                            </td>
+                    <div class="form-group">
 
-                            <td>
-                                <?= htmlspecialchars($product['description']) ?>
-                            </td>
+                        <label for="description">
+                            Description
+                        </label>
 
-                            <td>
-                                ₱<?= htmlspecialchars($product['price']) ?>
-                            </td>
+                        <textarea
+                            id="description"
+                            name="description"
+                        ><?= htmlspecialchars($product['description']); ?></textarea>
 
-                            <td>
-                                <?= htmlspecialchars($product['quantity']) ?>
-                            </td>
+                    </div>
 
-                            <td>
-                                <?= htmlspecialchars($product['created_at']) ?>
-                            </td>
 
-                            <td>
+                    <!-- PRICE & QUANTITY -->
 
-                                <div class="actions">
+                    <div class="form-row">
 
-                                    <a
-                                        href="<?= site_url('products/edit/' . $product['id']); ?>"
-                                        class="edit">
-                                        Edit
-                                    </a>
+                        <div class="form-group">
 
-                                    <a
-                                        href="<?= site_url('products/delete/' . $product['id']); ?>"
-                                        class="delete"
-                                        onclick="return confirm('Are you sure you want to delete this product?');">
-                                        Delete
-                                    </a>
+                            <label for="price">
+                                Price
+                            </label>
 
-                                </div>
+                            <input
+                                type="number"
+                                id="price"
+                                name="price"
+                                step="0.01"
+                                min="0"
+                                value="<?= htmlspecialchars($product['price']); ?>"
+                                required
+                            >
 
-                            </td>
+                        </div>
 
-                        </tr>
 
-                    <?php endforeach; ?>
+                        <div class="form-group">
 
-                    </tbody>
+                            <label for="quantity">
+                                Quantity
+                            </label>
 
-                </table>
+                            <input
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                min="0"
+                                value="<?= htmlspecialchars($product['quantity']); ?>"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="buttons">
+
+                        <button type="submit">
+                            ✓ Update Product
+                        </button>
+
+                        <a
+                            href="<?= site_url('products'); ?>"
+                            class="cancel">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="card-footer">
+
+                <p>
+                    Make sure all product information is correct before saving your changes.
+                </p>
 
             </div>
 
@@ -708,3 +571,4 @@ Gade
 </body>
 
 </html>
+```
