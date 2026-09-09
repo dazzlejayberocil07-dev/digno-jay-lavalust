@@ -3,12 +3,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Products | Student Portal</title>
+    <title>Products | Product Management System</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,45 +21,7 @@
             font-family: Arial, sans-serif;
             background: #f0fdf4;
             color: #1f2937;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            background: #14532d;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            color: white;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-links a {
-            color: #bbf7d0;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            background: #166534;
-            color: white;
+            min-height: 100vh;
         }
 
         /* =========================
@@ -68,20 +32,6 @@
             max-width: 1000px;
             margin: 50px auto;
             padding: 20px;
-        }
-
-        /* =========================
-           MESSAGE
-        ========================= */
-
-        .message {
-            background: #ecfdf5;
-            border: 1px solid #86efac;
-            color: #166534;
-            padding: 15px 18px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            font-size: 14px;
         }
 
         /* =========================
@@ -402,17 +352,6 @@
         }
 
         /* =========================
-           FOOTER
-        ========================= */
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #6b7280;
-            font-size: 12px;
-        }
-
-        /* =========================
            RESPONSIVE
         ========================= */
 
@@ -429,23 +368,6 @@
         }
 
         @media (max-width: 650px) {
-
-            .navbar {
-                height: auto;
-                padding: 15px 5%;
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .nav-links a {
-                padding: 8px 12px;
-            }
 
             .container {
                 margin: 30px auto;
@@ -488,44 +410,12 @@
                 gap: 10px;
             }
         }
+
     </style>
 
 </head>
 
 <body>
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
-    <nav class="navbar">
-
-        <div class="logo">
-            Student Portal
-        </div>
-
-        <div class="nav-links">
-
-            <a href="<?= site_url('student'); ?>">
-                Home
-            </a>
-
-            <a href="<?= site_url('student/profile'); ?>">
-                Profile
-            </a>
-
-            <a href="<?= site_url('products'); ?>" class="active">
-                Products
-            </a>
-
-            <a href="#">
-                Users
-            </a>
-
-        </div>
-
-    </nav>
-
 
     <!-- =========================
          MAIN CONTENT
@@ -539,7 +429,9 @@
 
             <div>
 
-                <h1>Products</h1>
+                <h1>
+                    Products
+                </h1>
 
                 <p>
                     Manage your products and monitor inventory.
@@ -584,13 +476,17 @@
                 <div class="stat-value">
 
                     <?php
+
                     $totalQuantity = 0;
 
                     foreach ($products as $product) {
+
                         $totalQuantity += (int) $product['quantity'];
+
                     }
 
                     echo $totalQuantity;
+
                     ?>
 
                 </div>
@@ -607,15 +503,21 @@
                 <div class="stat-value">
 
                     <?php
+
                     $available = 0;
 
                     foreach ($products as $product) {
+
                         if ((int) $product['quantity'] > 0) {
+
                             $available++;
+
                         }
+
                     }
 
                     echo $available;
+
                     ?>
 
                 </div>
@@ -632,15 +534,21 @@
                 <div class="stat-value">
 
                     <?php
+
                     $outOfStock = 0;
 
                     foreach ($products as $product) {
+
                         if ((int) $product['quantity'] <= 0) {
+
                             $outOfStock++;
+
                         }
+
                     }
 
                     echo $outOfStock;
+
                     ?>
 
                 </div>
@@ -658,7 +566,9 @@
 
                 <div>
 
-                    <h2>Product List</h2>
+                    <h2>
+                        Product List
+                    </h2>
 
                     <p>
                         All products currently stored in the system.
@@ -667,7 +577,9 @@
                 </div>
 
                 <div class="record-badge">
+
                     <?= count($products); ?> Records
+
                 </div>
 
             </div>
@@ -682,6 +594,7 @@
                     <thead>
 
                         <tr>
+
                             <th>ID</th>
                             <th>Product</th>
                             <th>Description</th>
@@ -689,6 +602,7 @@
                             <th>Stock</th>
                             <th>Created</th>
                             <th>Actions</th>
+
                         </tr>
 
                     </thead>
@@ -703,7 +617,9 @@
                             <tr>
 
                                 <td class="id">
+
                                     #<?= htmlspecialchars($product['id']) ?>
+
                                 </td>
 
 
@@ -716,7 +632,9 @@
                                         </div>
 
                                         <div class="product-name">
+
                                             <?= htmlspecialchars($product['product_name']) ?>
+
                                         </div>
 
                                     </div>
@@ -725,26 +643,34 @@
 
 
                                 <td class="description">
+
                                     <?= htmlspecialchars($product['description']) ?>
+
                                 </td>
 
 
                                 <td class="price">
+
                                     ₱<?= htmlspecialchars($product['price']) ?>
+
                                 </td>
 
 
                                 <td>
 
                                     <span class="quantity">
+
                                         <?= htmlspecialchars($product['quantity']) ?>
+
                                     </span>
 
                                 </td>
 
 
                                 <td class="created">
+
                                     <?= htmlspecialchars($product['created_at']) ?>
+
                                 </td>
 
 
@@ -792,7 +718,9 @@
                                         📦
                                     </div>
 
-                                    <h3>No Products Found</h3>
+                                    <h3>
+                                        No Products Found
+                                    </h3>
 
                                     <p>
                                         Start by adding your first product.
@@ -832,15 +760,6 @@
             </div>
 
         </section>
-
-
-        <!-- FOOTER -->
-
-        <div class="footer">
-
-            Student Information System &copy; <?= date('Y'); ?>
-
-        </div>
 
     </main>
 

@@ -6,9 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Add Product | Student Portal</title>
+    <title>Add Product | Product Management System</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -23,56 +24,12 @@
         }
 
         /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            background: #14532d;
-            height: 70px;
-            padding: 0 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: 0.3px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-links a {
-            color: #bbf7d0;
-            text-decoration: none;
-            padding: 9px 15px;
-            border-radius: 7px;
-            font-size: 14px;
-            transition: 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            background: #166534;
-            color: white;
-        }
-
-        .nav-links a.active {
-            background: #166534;
-            color: white;
-        }
-
-        /* =========================
            MAIN CONTAINER
         ========================= */
 
         .container {
             max-width: 900px;
-            margin: 45px auto;
+            margin: 50px auto;
             padding: 20px;
         }
 
@@ -278,25 +235,10 @@
         }
 
         /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            text-align: center;
-            color: #86a68f;
-            font-size: 13px;
-            margin-top: 30px;
-        }
-
-        /* =========================
            RESPONSIVE
         ========================= */
 
         @media (max-width: 800px) {
-
-            .navbar {
-                padding: 0 5%;
-            }
 
             .container {
                 margin: 35px auto;
@@ -317,20 +259,6 @@
         }
 
         @media (max-width: 650px) {
-
-            .navbar {
-                height: auto;
-                min-height: 70px;
-                padding: 15px 5%;
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
 
             .container {
                 margin: 28px auto;
@@ -371,19 +299,6 @@
 
         @media (max-width: 400px) {
 
-            .logo {
-                font-size: 18px;
-            }
-
-            .nav-links {
-                gap: 4px;
-            }
-
-            .nav-links a {
-                padding: 8px 11px;
-                font-size: 13px;
-            }
-
             .page-header h1 {
                 font-size: 23px;
             }
@@ -400,44 +315,12 @@
                 padding: 15px 20px;
             }
         }
+
     </style>
 
 </head>
 
 <body>
-
-    <!-- =========================
-         NAVIGATION BAR
-    ========================== -->
-
-    <nav class="navbar">
-
-        <div class="logo">
-            Student Portal
-        </div>
-
-        <div class="nav-links">
-
-            <a href="<?= site_url('student'); ?>">
-                Home
-            </a>
-
-            <a href="<?= site_url('student/profile'); ?>">
-                Profile
-            </a>
-
-            <a href="<?= site_url('products'); ?>" class="active">
-                Products
-            </a>
-
-            <a href="<?= site_url('users'); ?>">
-                Users
-            </a>
-
-        </div>
-
-    </nav>
-
 
     <!-- =========================
          MAIN CONTENT
@@ -618,13 +501,6 @@
             Make sure the product name, price, and quantity are correct before saving.
 
         </div>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-            Student Information System
-        </footer>
 
     </main>
 

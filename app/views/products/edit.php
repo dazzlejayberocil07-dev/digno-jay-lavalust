@@ -3,12 +3,14 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit Product | Student Portal</title>
+    <title>Edit Product | Product Management System</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,45 +21,7 @@
             font-family: Arial, sans-serif;
             background: #f0fdf4;
             color: #1f2937;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        .navbar {
-            background: #14532d;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            color: white;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-links a {
-            color: #bbf7d0;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            background: #166534;
-            color: white;
+            min-height: 100vh;
         }
 
         /* =========================
@@ -149,10 +113,15 @@
             transition: 0.2s;
         }
 
+        input::placeholder,
+        textarea::placeholder {
+            color: #9ca3af;
+        }
+
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #86efac;
+            border-color: #16a34a;
             box-shadow: 0 0 0 3px rgba(22, 163, 74, .08);
             background: white;
         }
@@ -228,15 +197,8 @@
             font-size: 13px;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #6b7280;
-            font-size: 12px;
+        .info-note strong {
+            color: #14532d;
         }
 
         /* =========================
@@ -244,23 +206,6 @@
         ========================= */
 
         @media (max-width: 650px) {
-
-            .navbar {
-                height: auto;
-                padding: 15px 5%;
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .nav-links {
-                width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .nav-links a {
-                padding: 8px 12px;
-            }
 
             .container {
                 margin: 30px auto;
@@ -291,44 +236,24 @@
                 text-align: center;
             }
         }
+
+        @media (max-width: 400px) {
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .card-header,
+            .form-body {
+                padding: 18px;
+            }
+        }
+
     </style>
 
 </head>
 
 <body>
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
-    <nav class="navbar">
-
-        <div class="logo">
-            Student Portal
-        </div>
-
-        <div class="nav-links">
-
-            <a href="<?= site_url('student'); ?>">
-                Home
-            </a>
-
-            <a href="<?= site_url('student/profile'); ?>">
-                Profile
-            </a>
-
-            <a href="<?= site_url('products'); ?>" class="active">
-                Products
-            </a>
-
-            <a href="#">
-                Users
-            </a>
-
-        </div>
-
-    </nav>
-
 
     <!-- =========================
          MAIN CONTENT
@@ -340,7 +265,9 @@
 
         <div class="page-header">
 
-            <h1>Edit Product</h1>
+            <h1>
+                Edit Product
+            </h1>
 
             <p>
                 Update the information of this product.
@@ -355,7 +282,9 @@
 
             <div class="card-header">
 
-                <h2>Product Information</h2>
+                <h2>
+                    Product Information
+                </h2>
 
                 <p>
                     Modify the product details below and save your changes.
@@ -459,7 +388,8 @@
 
                         <a
                             href="<?= site_url('products'); ?>"
-                            class="cancel">
+                            class="cancel"
+                        >
                             Cancel
                         </a>
 
@@ -478,15 +408,6 @@
                 </div>
 
             </div>
-
-        </div>
-
-
-        <!-- FOOTER -->
-
-        <div class="footer">
-
-            Student Information System &copy; <?= date('Y'); ?>
 
         </div>
 
