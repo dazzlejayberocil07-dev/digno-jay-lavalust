@@ -16,197 +16,132 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                "Segoe UI", Roboto, Arial, sans-serif;
-            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
             color: #1f2937;
             min-height: 100vh;
         }
 
         /* =========================
-           SIDEBAR
+           NAVBAR
         ========================= */
 
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 240px;
-            height: 100vh;
-            background: #111827;
-            padding: 25px 18px;
-            z-index: 10;
+        .navbar {
+            background: #14532d;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+            color: white;
         }
 
         .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px 30px;
-            color: white;
+            gap: 8px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .logo-text h2 {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            font-size: 11px;
-            color: #9ca3af;
-        }
-
-        .menu-title {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #6b7280;
-            padding: 0 12px;
-            margin: 10px 0;
-        }
-
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .menu a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            color: #9ca3af;
+        .nav-links a {
+            color: #bbf7d0;
             text-decoration: none;
+            padding: 10px 15px;
             border-radius: 8px;
             font-size: 14px;
-            transition: 0.2s ease;
+            transition: 0.2s;
         }
 
-        .menu a:hover {
-            background: #1f2937;
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #166534;
             color: white;
-        }
-
-        .menu a.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        .menu-icon {
-            width: 22px;
-            text-align: center;
-            font-size: 16px;
         }
 
         /* =========================
-           MAIN CONTENT
+           MAIN CONTAINER
         ========================= */
 
-        .main {
-            margin-left: 240px;
-            min-height: 100vh;
-            padding: 30px;
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
         }
 
-        /* TOP BAR */
+        /* =========================
+           PAGE HEADER
+        ========================= */
 
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+        .page-header {
+            margin-bottom: 25px;
         }
 
-        .page-title h1 {
-            font-size: 25px;
-            color: #111827;
-            margin-bottom: 5px;
+        .page-header h1 {
+            color: #14532d;
+            font-size: 30px;
+            margin-bottom: 8px;
         }
 
-        .page-title p {
-            color: #6b7280;
+        .page-header p {
+            color: #64748b;
             font-size: 14px;
         }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            padding: 8px 14px;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-        }
+        /* =========================
+           MESSAGE BOX
+        ========================= */
 
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #2563eb;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .user-info span {
-            font-size: 13px;
-            font-weight: 600;
+        .message {
+            background: #ecfdf5;
+            border: 1px solid #86efac;
+            color: #166534;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         /* =========================
-           CONTENT CARD
+           USERS CARD
         ========================= */
 
         .card {
             background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(20, 83, 45, .08);
             overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 22px 24px;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 25px 30px;
+            border-bottom: 1px solid #dcfce7;
         }
 
         .card-title h2 {
-            font-size: 17px;
-            color: #111827;
-            margin-bottom: 4px;
+            font-size: 20px;
+            color: #14532d;
+            margin-bottom: 6px;
         }
 
         .card-title p {
-            color: #6b7280;
-            font-size: 13px;
+            color: #64748b;
+            font-size: 14px;
         }
 
         .record-count {
             padding: 7px 12px;
-            background: #eff6ff;
-            color: #2563eb;
+            background: #ecfdf5;
+            color: #166534;
+            border: 1px solid #bbf7d0;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: bold;
         }
 
         /* =========================
@@ -224,23 +159,26 @@
             min-width: 700px;
         }
 
+        thead {
+            background: #f8fffa;
+        }
+
         th {
-            background: #f9fafb;
-            color: #6b7280;
+            color: #14532d;
             text-align: left;
             padding: 14px 20px;
             font-size: 11px;
-            font-weight: 600;
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #dcfce7;
         }
 
         td {
             padding: 15px 20px;
             font-size: 13px;
             color: #374151;
-            border-bottom: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f0fdf4;
         }
 
         tbody tr {
@@ -248,34 +186,63 @@
         }
 
         tbody tr:hover {
-            background: #f8fafc;
+            background: #f8fffa;
         }
 
         tbody tr:last-child td {
             border-bottom: none;
         }
 
+        /* =========================
+           TABLE CONTENT
+        ========================= */
+
         .id {
-            color: #2563eb;
-            font-weight: 700;
+            color: #16a34a;
+            font-weight: bold;
         }
 
         .name {
-            color: #111827;
+            color: #14532d;
             font-weight: 600;
         }
 
         .email {
-            color: #6b7280;
+            color: #64748b;
         }
 
         .username {
             display: inline-block;
-            padding: 5px 9px;
-            background: #f3f4f6;
-            color: #374151;
-            border-radius: 6px;
+            padding: 6px 10px;
+            background: #ecfdf5;
+            color: #166534;
+            border: 1px solid #dcfce7;
+            border-radius: 7px;
             font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           USER ICON
+        ========================= */
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #ecfdf5;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
         }
 
         /* =========================
@@ -284,13 +251,31 @@
 
         .empty {
             text-align: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
             color: #6b7280;
         }
 
         .empty-icon {
-            font-size: 35px;
-            margin-bottom: 10px;
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 12px;
+            border-radius: 12px;
+            background: #ecfdf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .empty h3 {
+            color: #14532d;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .empty p {
+            font-size: 13px;
+            color: #6b7280;
         }
 
         /* =========================
@@ -298,8 +283,9 @@
         ========================= */
 
         .footer {
-            padding: 20px 24px;
-            border-top: 1px solid #e5e7eb;
+            padding: 18px 30px;
+            background: #f8fffa;
+            border-top: 1px solid #dcfce7;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -307,168 +293,143 @@
 
         .footer p {
             font-size: 12px;
-            color: #9ca3af;
+            color: #6b7280;
         }
 
         .back-btn {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            padding: 8px 13px;
-            background: #2563eb;
+            padding: 9px 14px;
+            background: #16a34a;
             color: white;
             text-decoration: none;
-            border-radius: 7px;
+            border-radius: 8px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: bold;
             transition: 0.2s ease;
         }
 
         .back-btn:hover {
-            background: #1d4ed8;
+            background: #15803d;
+        }
+
+        /* =========================
+           FOOTER BELOW CARD
+        ========================= */
+
+        .page-footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6b7280;
+            font-size: 12px;
         }
 
         /* =========================
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 800px) {
+        @media (max-width: 650px) {
 
-            .sidebar {
-                width: 70px;
-                padding: 20px 10px;
+            .navbar {
+                height: auto;
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 12px;
             }
 
-            .logo {
+            .nav-links {
+                width: 100%;
                 justify-content: center;
-                padding: 10px 0 25px;
+                flex-wrap: wrap;
             }
 
-            .logo-text,
-            .menu-title,
-            .menu a span {
-                display: none;
+            .nav-links a {
+                padding: 8px 12px;
             }
 
-            .menu a {
-                justify-content: center;
-                padding: 13px;
-            }
-
-            .main {
-                margin-left: 70px;
-                padding: 20px;
-            }
-
-            .topbar {
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .user-info {
-                display: none;
-            }
-
-            .page-title h1 {
-                font-size: 22px;
-            }
-        }
-
-        @media (max-width: 500px) {
-
-            .main {
+            .container {
+                margin: 30px auto;
                 padding: 15px;
             }
 
-            .card-header {
-                padding: 18px;
+            .page-header h1 {
+                font-size: 26px;
             }
 
             .card-header {
+                padding: 20px;
+                flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: 12px;
             }
 
             .footer {
+                padding: 18px 20px;
                 flex-direction: column;
                 gap: 12px;
                 align-items: flex-start;
             }
+
+            .back-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
+
 </head>
 
 <body>
 
     <!-- =========================
-         SIDEBAR
+         NAVBAR
     ========================== -->
 
-    <aside class="sidebar">
+    <nav class="navbar">
 
         <div class="logo">
-
-            <div class="logo-icon">
-                SP
-            </div>
-
-            <div class="logo-text">
-                <h2>Student Portal</h2>
-                <span>LavaLust System</span>
-            </div>
-
+            Student Portal
         </div>
 
-        <div class="menu-title">
-            Navigation
-        </div>
-
-        <nav class="menu">
+        <div class="nav-links">
 
             <a href="<?= site_url('student'); ?>">
-                <span class="menu-icon">⌂</span>
-                <span>Dashboard</span>
+                Home
             </a>
 
             <a href="<?= site_url('student/profile'); ?>">
-                <span class="menu-icon">👤</span>
-                <span>My Profile</span>
+                Profile
+            </a>
+
+            <a href="<?= site_url('products'); ?>">
+                Products
             </a>
 
             <a href="<?= site_url('users'); ?>" class="active">
-                <span class="menu-icon">☷</span>
-                <span>Users</span>
+                Users
             </a>
 
-        </nav>
+        </div>
 
-    </aside>
+    </nav>
 
 
     <!-- =========================
          MAIN CONTENT
     ========================== -->
 
-    <main class="main">
+    <main class="container">
 
-        <!-- TOP BAR -->
+        <!-- PAGE HEADER -->
 
-        <div class="topbar">
+        <div class="page-header">
 
-            <div class="page-title">
-                <h1>Users</h1>
-                <p>Manage and view registered users in the system.</p>
-            </div>
+            <h1>Users</h1>
 
-            <div class="user-info">
-
-                <div class="avatar">
-                    SP
-                </div>
-
-                <span>Student Portal</span>
-
-            </div>
+            <p>
+                Manage and view registered users in the system.
+            </p>
 
         </div>
 
@@ -477,11 +438,18 @@
 
         <section class="card">
 
+            <!-- CARD HEADER -->
+
             <div class="card-header">
 
                 <div class="card-title">
+
                     <h2>User Records</h2>
-                    <p>List of users retrieved from the database.</p>
+
+                    <p>
+                        List of users retrieved from the database.
+                    </p>
+
                 </div>
 
                 <div class="record-count">
@@ -490,6 +458,8 @@
 
             </div>
 
+
+            <!-- TABLE -->
 
             <div class="table-wrapper">
 
@@ -506,6 +476,7 @@
                         </tr>
 
                     </thead>
+
 
                     <tbody>
 
@@ -532,9 +503,11 @@
                                     </td>
 
                                     <td>
+
                                         <span class="username">
                                             @<?= htmlspecialchars($user['username']) ?>
                                         </span>
+
                                     </td>
 
                                 </tr>
@@ -553,7 +526,11 @@
                                             👥
                                         </div>
 
-                                        <p>No users found.</p>
+                                        <h3>No Users Found</h3>
+
+                                        <p>
+                                            There are currently no registered users.
+                                        </p>
 
                                     </div>
 
@@ -570,7 +547,7 @@
             </div>
 
 
-            <!-- FOOTER -->
+            <!-- CARD FOOTER -->
 
             <div class="footer">
 
@@ -578,13 +555,26 @@
                     Data retrieved dynamically from the MySQL database.
                 </p>
 
-                <a href="<?= site_url('student'); ?>" class="back-btn">
+                <a
+                    href="<?= site_url('student'); ?>"
+                    class="back-btn">
+
                     ← Back to Dashboard
+
                 </a>
 
             </div>
 
         </section>
+
+
+        <!-- PAGE FOOTER -->
+
+        <div class="page-footer">
+
+            Student Information System &copy; <?= date('Y'); ?>
+
+        </div>
 
     </main>
 
