@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login | Student Portal</title>
+    <title>Login | Product Management System</title>
 
     <style>
 
@@ -43,18 +43,6 @@
             padding: 35px;
 
             box-shadow: 0 8px 30px rgba(20, 83, 45, .08);
-        }
-
-        .logo {
-            text-align: center;
-
-            color: #14532d;
-
-            font-size: 22px;
-
-            font-weight: bold;
-
-            margin-bottom: 25px;
         }
 
         .login-header {
@@ -179,20 +167,6 @@
             line-height: 1.5;
         }
 
-        .footer {
-            text-align: center;
-
-            margin-top: 25px;
-
-            padding-top: 20px;
-
-            border-top: 1px solid #dcfce7;
-
-            color: #6b7280;
-
-            font-size: 12px;
-        }
-
         @media (max-width: 500px) {
 
             body {
@@ -217,17 +191,12 @@
 
     <div class="login-card">
 
-        <div class="logo">
-            Student Portal
-        </div>
-
-
         <div class="login-header">
 
             <h1>Login</h1>
 
             <p>
-                Login to access the Student Portal.
+                Login to access the Product Management System.
             </p>
 
         </div>
@@ -289,13 +258,6 @@
             </button>
 
         </form>
-
-
-        <div class="footer">
-
-            Student Information System &copy; <?= date('Y'); ?>
-
-        </div>
 
     </div>
 
