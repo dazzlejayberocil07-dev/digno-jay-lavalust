@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit Product | Product Management</title>
+    <title>Edit Product | Student Portal</title>
 
     <style>
         * {
@@ -17,137 +17,102 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            color: #333;
-        }
-
-        .layout {
-            display: flex;
-            min-height: 100vh;
+            background: #f0fdf4;
+            color: #1f2937;
         }
 
         /* =========================
-           SIDEBAR
+           NAVBAR
         ========================= */
 
-        .sidebar {
-            width: 240px;
-            background: #1e293b;
+        .navbar {
+            background: #14532d;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
             color: white;
-            padding: 25px 15px;
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
         }
 
         .logo {
             font-size: 22px;
             font-weight: bold;
-            text-align: center;
-            margin-bottom: 35px;
         }
 
-        .menu-title {
-            font-size: 12px;
-            color: #94a3b8;
-            margin: 20px 10px 8px;
-            text-transform: uppercase;
+        .nav-links {
+            display: flex;
+            gap: 8px;
         }
 
-        .sidebar a {
-            display: block;
-            color: #cbd5e1;
+        .nav-links a {
+            color: #bbf7d0;
             text-decoration: none;
-            padding: 12px 15px;
+            padding: 10px 15px;
             border-radius: 8px;
-            margin-bottom: 5px;
+            font-size: 14px;
             transition: 0.2s;
         }
 
-        .sidebar a:hover,
-        .sidebar a.active {
-            background: #2563eb;
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #166534;
             color: white;
         }
 
         /* =========================
-           MAIN CONTENT
+           MAIN CONTAINER
         ========================= */
 
-        .main {
-            margin-left: 240px;
-            width: calc(100% - 240px);
-            padding: 30px;
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
         }
 
         /* =========================
-           TOP BAR
+           PAGE HEADER
         ========================= */
 
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .page-header {
             margin-bottom: 25px;
         }
 
-        .topbar h1 {
-            font-size: 28px;
-            color: #333;
+        .page-header h1 {
+            color: #14532d;
+            font-size: 30px;
+            margin-bottom: 8px;
         }
 
-        .topbar p {
+        .page-header p {
             color: #64748b;
-            margin-top: 5px;
             font-size: 14px;
         }
 
         /* =========================
-           BACK BUTTON
-        ========================= */
-
-        .back-button {
-            background: #64748b;
-            color: white;
-            text-decoration: none;
-            padding: 10px 16px;
-            border-radius: 7px;
-            font-weight: bold;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-
-        .back-button:hover {
-            background: #475569;
-        }
-
-        /* =========================
-           FORM CARD
+           CARD
         ========================= */
 
         .card {
             background: white;
-            max-width: 850px;
-            border-radius: 12px;
-            padding: 0;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(20, 83, 45, .08);
             overflow: hidden;
         }
 
         .card-header {
             padding: 25px 30px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #dcfce7;
         }
 
         .card-header h2 {
+            color: #14532d;
             font-size: 20px;
-            color: #1f2937;
+            margin-bottom: 6px;
         }
 
         .card-header p {
             color: #64748b;
-            margin-top: 5px;
             font-size: 14px;
         }
 
@@ -167,27 +132,29 @@
             display: block;
             font-weight: bold;
             font-size: 14px;
-            color: #374151;
+            color: #14532d;
             margin-bottom: 8px;
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
+            padding: 12px 14px;
+            border: 1px solid #dcfce7;
+            border-radius: 10px;
             font-size: 14px;
             font-family: Arial, sans-serif;
-            color: #333;
+            color: #1f2937;
+            background: #f8fffa;
             transition: 0.2s;
         }
 
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.08);
+            border-color: #86efac;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, .08);
+            background: white;
         }
 
         textarea {
@@ -214,51 +181,61 @@
             gap: 10px;
             margin-top: 25px;
             padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid #dcfce7;
         }
 
         button,
         .cancel {
-            padding: 11px 18px;
-            border-radius: 7px;
+            padding: 12px 18px;
+            border-radius: 9px;
             border: none;
             font-weight: bold;
             cursor: pointer;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 14px;
             transition: 0.2s;
         }
 
         button {
-            background: #2563eb;
+            background: #16a34a;
             color: white;
         }
 
         button:hover {
-            background: #1d4ed8;
+            background: #15803d;
         }
 
         .cancel {
-            background: #64748b;
+            background: #14532d;
             color: white;
         }
 
         .cancel:hover {
-            background: #475569;
+            background: #166534;
+        }
+
+        /* =========================
+           INFORMATION NOTE
+        ========================= */
+
+        .info-note {
+            margin-top: 20px;
+            padding: 15px 18px;
+            background: #ecfdf5;
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            color: #166534;
+            font-size: 13px;
         }
 
         /* =========================
            FOOTER
         ========================= */
 
-        .card-footer {
-            padding: 18px 30px;
-            background: #f8fafc;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .card-footer p {
-            color: #94a3b8;
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6b7280;
             font-size: 12px;
         }
 
@@ -266,81 +243,42 @@
            MOBILE
         ========================= */
 
-        @media (max-width: 768px) {
+        @media (max-width: 650px) {
 
-            .sidebar {
-                width: 200px;
-            }
-
-            .main {
-                margin-left: 200px;
-                width: calc(100% - 200px);
-                padding: 20px;
-            }
-
-            .topbar {
+            .navbar {
+                height: auto;
+                padding: 15px 5%;
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                gap: 12px;
             }
 
-            .card {
-                max-width: 100%;
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
-        }
-
-        @media (max-width: 600px) {
-
-            .sidebar {
-                width: 70px;
-                padding: 20px 10px;
+            .nav-links a {
+                padding: 8px 12px;
             }
 
-            .logo {
-                font-size: 0;
-                margin-bottom: 30px;
-            }
-
-            .logo::before {
-                content: "PS";
-                font-size: 18px;
-                font-weight: bold;
-            }
-
-            .menu-title {
-                display: none;
-            }
-
-            .sidebar a {
-                padding: 12px 8px;
-                text-align: center;
-                font-size: 0;
-            }
-
-            .sidebar a::first-letter {
-                font-size: 18px;
-            }
-
-            .main {
-                margin-left: 70px;
-                width: calc(100% - 70px);
+            .container {
+                margin: 30px auto;
                 padding: 15px;
             }
 
-            .topbar h1 {
-                font-size: 24px;
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .card-header,
+            .form-body {
+                padding: 20px;
             }
 
             .form-row {
                 grid-template-columns: 1fr;
                 gap: 0;
-            }
-
-            .card-header,
-            .form-body,
-            .card-footer {
-                padding: 20px;
             }
 
             .buttons {
@@ -359,74 +297,54 @@
 
 <body>
 
-<div class="layout">
-
     <!-- =========================
-         SIDEBAR
+         NAVBAR
     ========================== -->
 
-    <aside class="sidebar">
+    <nav class="navbar">
 
         <div class="logo">
-            Product System
+            Student Portal
         </div>
 
-        <div class="menu-title">
-            Main
+        <div class="nav-links">
+
+            <a href="<?= site_url('student'); ?>">
+                Home
+            </a>
+
+            <a href="<?= site_url('student/profile'); ?>">
+                Profile
+            </a>
+
+            <a href="<?= site_url('products'); ?>" class="active">
+                Products
+            </a>
+
+            <a href="#">
+                Users
+            </a>
+
         </div>
 
-        <a href="<?= site_url('products'); ?>" class="active">
-            📦 Products
-        </a>
-
-        <a href="<?= site_url('products/create'); ?>">
-            ➕ Add Product
-        </a>
-
-        <div class="menu-title">
-            System
-        </div>
-
-        <a href="#">
-            👤 Users
-        </a>
-
-        <a href="#">
-            ⚙️ Settings
-        </a>
-
-        <a href="#">
-            🚪 Logout
-        </a>
-
-    </aside>
+    </nav>
 
 
     <!-- =========================
          MAIN CONTENT
     ========================== -->
 
-    <main class="main">
+    <main class="container">
 
-        <!-- TOP BAR -->
+        <!-- PAGE HEADER -->
 
-        <div class="topbar">
+        <div class="page-header">
 
-            <div>
+            <h1>Edit Product</h1>
 
-                <h1>Edit Product</h1>
-
-                <p>
-                    Update the information of this product.
-                </p>
-
-            </div>
-
-            <a
-                href="<?= site_url('products'); ?>"
-                class="back-button">
-                ← Back to Products
-            </a>
+            <p>
+                Update the information of this product.
+            </p>
 
         </div>
 
@@ -549,24 +467,30 @@
 
                 </form>
 
-            </div>
 
+                <!-- INFORMATION NOTE -->
 
-            <!-- FOOTER -->
+                <div class="info-note">
 
-            <div class="card-footer">
-
-                <p>
+                    <strong>Note:</strong>
                     Make sure all product information is correct before saving your changes.
-                </p>
+
+                </div>
 
             </div>
 
         </div>
 
-    </main>
 
-</div>
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            Student Information System &copy; <?= date('Y'); ?>
+
+        </div>
+
+    </main>
 
 </body>
 

@@ -16,159 +16,84 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                "Segoe UI", Roboto, Arial, sans-serif;
-            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
             color: #1f2937;
             min-height: 100vh;
         }
 
         /* =========================
-           SIDEBAR
+           NAVBAR
         ========================= */
 
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 240px;
-            height: 100vh;
-            background: #111827;
-            padding: 25px 18px;
-            z-index: 10;
+        .navbar {
+            background: #14532d;
+            height: 70px;
+            padding: 0 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 12px 30px;
             color: white;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 0.3px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: #2563eb;
+        .nav-links {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 18px;
+            gap: 8px;
         }
 
-        .logo-text h2 {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .logo-text span {
-            font-size: 11px;
-            color: #9ca3af;
-        }
-
-        .menu-title {
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #6b7280;
-            padding: 0 12px;
-            margin: 10px 0;
-        }
-
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .menu a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            color: #9ca3af;
+        .nav-links a {
+            color: #bbf7d0;
             text-decoration: none;
-            border-radius: 8px;
+            padding: 9px 15px;
+            border-radius: 7px;
             font-size: 14px;
             transition: 0.2s ease;
         }
 
-        .menu a:hover {
-            background: #1f2937;
+        .nav-links a:hover {
+            background: #166534;
             color: white;
         }
 
-        .menu a.active {
-            background: #2563eb;
+        .nav-links a.active {
+            background: #166534;
             color: white;
         }
 
-        .menu-icon {
-            width: 22px;
-            text-align: center;
-            font-size: 16px;
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            max-width: 900px;
+            margin: 45px auto;
+            padding: 20px;
         }
 
         /* =========================
-           MAIN CONTENT
+           PAGE HEADER
         ========================= */
 
-        .main {
-            margin-left: 240px;
-            min-height: 100vh;
-            padding: 30px;
+        .page-header {
+            margin-bottom: 22px;
         }
 
-        /* =========================
-           TOP BAR
-        ========================= */
-
-        .topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+        .page-header h1 {
+            font-size: 30px;
+            color: #14532d;
+            margin-bottom: 7px;
         }
 
-        .page-title h1 {
-            font-size: 25px;
-            color: #111827;
-            margin-bottom: 5px;
-        }
-
-        .page-title p {
-            color: #6b7280;
+        .page-header p {
+            color: #64748b;
             font-size: 14px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            padding: 8px 14px;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: #2563eb;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .user-info span {
-            font-size: 13px;
-            font-weight: 600;
+            line-height: 1.5;
         }
 
         /* =========================
@@ -177,39 +102,37 @@
 
         .card {
             background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(20, 83, 45, 0.08);
             overflow: hidden;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
-            max-width: 850px;
         }
 
         .card-header {
-            padding: 22px 24px;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 28px 32px;
+            border-bottom: 1px solid #dcfce7;
         }
 
-        .card-title h2 {
-            font-size: 17px;
-            color: #111827;
-            margin-bottom: 4px;
+        .card-header h2 {
+            color: #14532d;
+            font-size: 20px;
+            margin-bottom: 6px;
         }
 
-        .card-title p {
-            color: #6b7280;
+        .card-header p {
+            color: #64748b;
             font-size: 13px;
         }
 
         /* =========================
-           FORM
+           FORM BODY
         ========================= */
 
         .form-body {
-            padding: 24px;
+            padding: 32px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .form-group:last-child {
@@ -218,26 +141,26 @@
 
         label {
             display: block;
-            font-size: 13px;
-            font-weight: 600;
             color: #374151;
+            font-size: 13px;
+            font-weight: bold;
             margin-bottom: 8px;
         }
 
         .required {
-            color: #2563eb;
+            color: #16a34a;
         }
 
         input,
         textarea {
             width: 100%;
-            padding: 12px 13px;
+            padding: 13px 14px;
             border: 1px solid #d1d5db;
-            border-radius: 8px;
-            background: #fff;
+            border-radius: 9px;
+            background: white;
             color: #1f2937;
             font-family: inherit;
-            font-size: 13px;
+            font-size: 14px;
             transition: 0.2s ease;
         }
 
@@ -249,12 +172,12 @@
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+            border-color: #16a34a;
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.08);
         }
 
         textarea {
-            min-height: 120px;
+            min-height: 125px;
             resize: vertical;
         }
 
@@ -264,7 +187,7 @@
 
         .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 18px;
         }
 
@@ -273,10 +196,14 @@
         ========================= */
 
         .buttons {
+            margin-top: 28px;
+            padding-top: 25px;
+            border-top: 1px solid #dcfce7;
+
             display: flex;
+            justify-content: flex-end;
             align-items: center;
             gap: 10px;
-            padding-top: 5px;
         }
 
         button,
@@ -285,49 +212,80 @@
             align-items: center;
             justify-content: center;
             gap: 7px;
-            padding: 10px 16px;
-            border-radius: 7px;
-            border: none;
+            padding: 12px 19px;
+            border-radius: 9px;
             font-family: inherit;
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: bold;
             cursor: pointer;
             text-decoration: none;
             transition: 0.2s ease;
         }
 
         button {
-            background: #2563eb;
+            background: #16a34a;
             color: white;
+            border: none;
         }
 
         button:hover {
-            background: #1d4ed8;
+            background: #15803d;
         }
 
         .cancel {
-            background: #f3f4f6;
-            color: #374151;
-            border: 1px solid #e5e7eb;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
         }
 
         .cancel:hover {
-            background: #e5e7eb;
+            background: #dcfce7;
+        }
+
+        /* =========================
+           CARD FOOTER
+        ========================= */
+
+        .card-footer {
+            padding: 17px 32px;
+            background: #f8fffa;
+            border-top: 1px solid #dcfce7;
+        }
+
+        .card-footer p {
+            color: #86a68f;
+            font-size: 12px;
+        }
+
+        /* =========================
+           INFORMATION NOTE
+        ========================= */
+
+        .note {
+            margin-top: 18px;
+            padding: 14px 17px;
+            background: #ecfdf5;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            color: #166534;
+            font-size: 12px;
+        }
+
+        .note strong {
+            display: block;
+            margin-bottom: 3px;
+            color: #14532d;
         }
 
         /* =========================
            FOOTER
         ========================= */
 
-        .card-footer {
-            padding: 18px 24px;
-            border-top: 1px solid #e5e7eb;
-            background: #fafafa;
-        }
-
-        .card-footer p {
-            font-size: 12px;
-            color: #9ca3af;
+        footer {
+            text-align: center;
+            color: #86a68f;
+            font-size: 13px;
+            margin-top: 30px;
         }
 
         /* =========================
@@ -336,50 +294,59 @@
 
         @media (max-width: 800px) {
 
-            .sidebar {
-                width: 70px;
-                padding: 20px 10px;
+            .navbar {
+                padding: 0 5%;
             }
 
-            .logo {
-                justify-content: center;
-                padding: 10px 0 25px;
+            .container {
+                margin: 35px auto;
+                padding: 15px;
             }
 
-            .logo-text,
-            .menu-title,
-            .menu a span {
-                display: none;
+            .card-header {
+                padding: 25px;
             }
 
-            .menu a {
-                justify-content: center;
-                padding: 13px;
+            .form-body {
+                padding: 25px;
             }
 
-            .main {
-                margin-left: 70px;
-                padding: 20px;
-            }
-
-            .topbar {
-                align-items: flex-start;
-                gap: 15px;
-            }
-
-            .user-info {
-                display: none;
-            }
-
-            .page-title h1 {
-                font-size: 22px;
+            .card-footer {
+                padding: 16px 25px;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
 
-            .main {
+            .navbar {
+                height: auto;
+                min-height: 70px;
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .container {
+                margin: 28px auto;
                 padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .card-header {
+                padding: 23px;
+            }
+
+            .form-body {
+                padding: 23px;
             }
 
             .form-row {
@@ -387,26 +354,50 @@
                 gap: 0;
             }
 
-            .card-header {
-                padding: 18px;
-            }
-
-            .form-body {
-                padding: 18px;
-            }
-
-            .card-footer {
-                padding: 18px;
-            }
-
             .buttons {
-                flex-direction: column;
+                flex-direction: column-reverse;
                 align-items: stretch;
             }
 
             button,
             .cancel {
                 width: 100%;
+            }
+
+            .card-footer {
+                padding: 16px 23px;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-links {
+                gap: 4px;
+            }
+
+            .nav-links a {
+                padding: 8px 11px;
+                font-size: 13px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .card-header {
+                padding: 20px;
+            }
+
+            .form-body {
+                padding: 20px;
+            }
+
+            .card-footer {
+                padding: 15px 20px;
             }
         }
     </style>
@@ -416,89 +407,55 @@
 <body>
 
     <!-- =========================
-         SIDEBAR
+         NAVIGATION BAR
     ========================== -->
 
-    <aside class="sidebar">
+    <nav class="navbar">
 
         <div class="logo">
-
-            <div class="logo-icon">
-                SP
-            </div>
-
-            <div class="logo-text">
-                <h2>Student Portal</h2>
-                <span>LavaLust System</span>
-            </div>
-
+            Student Portal
         </div>
 
-        <div class="menu-title">
-            Navigation
-        </div>
-
-        <nav class="menu">
+        <div class="nav-links">
 
             <a href="<?= site_url('student'); ?>">
-                <span class="menu-icon">⌂</span>
-                <span>Dashboard</span>
+                Home
             </a>
 
             <a href="<?= site_url('student/profile'); ?>">
-                <span class="menu-icon">👤</span>
-                <span>My Profile</span>
+                Profile
             </a>
 
-            <a href="<?= site_url('products'); ?>">
-                <span class="menu-icon">📦</span>
-                <span>Products</span>
-            </a>
-
-            <a href="<?= site_url('products/create'); ?>" class="active">
-                <span class="menu-icon">＋</span>
-                <span>Add Product</span>
+            <a href="<?= site_url('products'); ?>" class="active">
+                Products
             </a>
 
             <a href="<?= site_url('users'); ?>">
-                <span class="menu-icon">☷</span>
-                <span>Users</span>
+                Users
             </a>
 
-        </nav>
+        </div>
 
-    </aside>
+    </nav>
 
 
     <!-- =========================
          MAIN CONTENT
     ========================== -->
 
-    <main class="main">
+    <main class="container">
 
-        <!-- TOP BAR -->
+        <!-- PAGE HEADER -->
 
-        <div class="topbar">
+        <div class="page-header">
 
-            <div class="page-title">
+            <h1>
+                Add Product
+            </h1>
 
-                <h1>Add Product</h1>
-
-                <p>
-                    Add a new product to your inventory.
-                </p>
-
-            </div>
-
-            <div class="user-info">
-
-                <div class="avatar">
-                    SP
-                </div>
-
-                <span>Student Portal</span>
-
-            </div>
+            <p>
+                Add a new product to your inventory and manage its information.
+            </p>
 
         </div>
 
@@ -509,29 +466,33 @@
 
             <div class="card-header">
 
-                <div class="card-title">
+                <h2>
+                    Product Information
+                </h2>
 
-                    <h2>Product Information</h2>
-
-                    <p>
-                        Enter the details of the product you want to add.
-                    </p>
-
-                </div>
+                <p>
+                    Enter the details of the product you want to add.
+                </p>
 
             </div>
 
 
             <div class="form-body">
 
-                <form action="<?= site_url('products/store'); ?>" method="POST">
+                <form
+                    action="<?= site_url('products/store'); ?>"
+                    method="POST"
+                >
 
                     <!-- PRODUCT NAME -->
 
                     <div class="form-group">
 
                         <label for="product_name">
-                            Product Name <span class="required">*</span>
+
+                            Product Name
+                            <span class="required">*</span>
+
                         </label>
 
                         <input
@@ -569,7 +530,10 @@
                         <div class="form-group">
 
                             <label for="price">
-                                Price <span class="required">*</span>
+
+                                Price
+                                <span class="required">*</span>
+
                             </label>
 
                             <input
@@ -588,7 +552,10 @@
                         <div class="form-group">
 
                             <label for="quantity">
-                                Quantity <span class="required">*</span>
+
+                                Quantity
+                                <span class="required">*</span>
+
                             </label>
 
                             <input
@@ -609,15 +576,16 @@
 
                     <div class="buttons">
 
+                        <a
+                            href="<?= site_url('products'); ?>"
+                            class="cancel"
+                        >
+                            ← Cancel
+                        </a>
+
                         <button type="submit">
                             ✓ Add Product
                         </button>
-
-                        <a
-                            href="<?= site_url('products'); ?>"
-                            class="cancel">
-                            ← Cancel
-                        </a>
 
                     </div>
 
@@ -626,7 +594,7 @@
             </div>
 
 
-            <!-- FOOTER -->
+            <!-- CARD FOOTER -->
 
             <div class="card-footer">
 
@@ -637,6 +605,26 @@
             </div>
 
         </section>
+
+
+        <!-- INFORMATION NOTE -->
+
+        <div class="note">
+
+            <strong>
+                Product Management
+            </strong>
+
+            Make sure the product name, price, and quantity are correct before saving.
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <footer>
+            Student Information System
+        </footer>
 
     </main>
 

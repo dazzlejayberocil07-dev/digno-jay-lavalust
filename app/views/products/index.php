@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Products | LavaLust System</title>
+    <title>Products | Student Portal</title>
 
     <style>
         * {
@@ -16,199 +16,109 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                "Segoe UI", Roboto, Arial, sans-serif;
-            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+            background: #f0fdf4;
             color: #1f2937;
         }
 
         /* =========================
-           SIDEBAR
+           NAVBAR
         ========================= */
 
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 250px;
-            height: 100vh;
-            background: #111827;
-            padding: 24px 16px;
-            z-index: 100;
-        }
-
-        .brand {
+        .navbar {
+            background: #14532d;
+            height: 70px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 6px 10px 28px;
-        }
-
-        .brand-icon {
-            width: 42px;
-            height: 42px;
-            background: #2563eb;
+            justify-content: space-between;
+            padding: 0 8%;
             color: white;
-            border-radius: 11px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .nav-links {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 800;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, .25);
+            gap: 8px;
         }
 
-        .brand-text h2 {
-            color: white;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .brand-text p {
-            color: #6b7280;
-            font-size: 10px;
-            margin-top: 2px;
-        }
-
-        .section-title {
-            color: #6b7280;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0 12px;
-            margin: 18px 0 8px;
-        }
-
-        .nav {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .nav a {
-            height: 44px;
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 0 13px;
-            color: #9ca3af;
+        .nav-links a {
+            color: #bbf7d0;
             text-decoration: none;
-            border-radius: 9px;
-            font-size: 13px;
-            font-weight: 500;
-            transition: .2s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.2s;
         }
 
-        .nav a:hover {
-            background: #1f2937;
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #166534;
             color: white;
         }
 
-        .nav a.active {
-            background: #2563eb;
-            color: white;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, .2);
-        }
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
 
-        .nav-icon {
-            width: 22px;
-            text-align: center;
-            font-size: 16px;
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
         }
 
         /* =========================
-           MAIN
+           MESSAGE
         ========================= */
 
-        .main {
-            margin-left: 250px;
-            min-height: 100vh;
-            padding: 28px 34px;
+        .message {
+            background: #ecfdf5;
+            border: 1px solid #86efac;
+            color: #166534;
+            padding: 15px 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         /* =========================
-           HEADER
+           PAGE HEADER
         ========================= */
 
-        .header {
+        .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
         }
 
-        .header-left h1 {
-            font-size: 24px;
-            color: #111827;
-            font-weight: 750;
+        .page-header h1 {
+            color: #14532d;
+            font-size: 30px;
+            margin-bottom: 6px;
         }
 
-        .header-left p {
-            margin-top: 4px;
-            color: #6b7280;
-            font-size: 13px;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .user-box {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 7px 12px;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 9px;
-        }
-
-        .user-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #eff6ff;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .user-info strong {
-            display: block;
-            font-size: 11px;
-            color: #111827;
-        }
-
-        .user-info span {
-            display: block;
-            font-size: 9px;
-            color: #9ca3af;
+        .page-header p {
+            color: #64748b;
+            font-size: 14px;
         }
 
         .add-btn {
-            height: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            padding: 0 15px;
-            background: #2563eb;
+            background: #16a34a;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 650;
-            transition: .2s ease;
+            padding: 12px 18px;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
         }
 
         .add-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-1px);
+            background: #15803d;
         }
 
         /* =========================
@@ -218,84 +128,68 @@
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 22px;
+            gap: 15px;
+            margin-bottom: 25px;
         }
 
         .stat-card {
             background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 17px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .025);
+            border: 1px solid #dcfce7;
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: 0 5px 20px rgba(20, 83, 45, .05);
         }
 
         .stat-label {
-            color: #6b7280;
-            font-size: 11px;
-            font-weight: 600;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 6px;
         }
 
         .stat-value {
-            color: #111827;
-            font-size: 21px;
-            font-weight: 750;
-            margin-top: 4px;
-        }
-
-        .stat-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 9px;
-            background: #eff6ff;
-            color: #2563eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 17px;
+            color: #14532d;
+            font-size: 24px;
+            font-weight: bold;
         }
 
         /* =========================
-           PRODUCT PANEL
+           PRODUCT CARD
         ========================= */
 
-        .panel {
+        .card {
             background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, .035);
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(20, 83, 45, .08);
             overflow: hidden;
         }
 
-        .panel-header {
-            padding: 20px 22px;
+        .card-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #dcfce7;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e5e7eb;
         }
 
-        .panel-title h2 {
-            font-size: 16px;
-            color: #111827;
+        .card-header h2 {
+            color: #14532d;
+            font-size: 20px;
+            margin-bottom: 5px;
         }
 
-        .panel-title p {
-            font-size: 11px;
-            color: #9ca3af;
-            margin-top: 4px;
+        .card-header p {
+            color: #64748b;
+            font-size: 14px;
         }
 
         .record-badge {
-            padding: 6px 10px;
-            background: #eff6ff;
-            color: #2563eb;
+            background: #ecfdf5;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 7px 12px;
             border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         /* =========================
@@ -309,48 +203,51 @@
 
         table {
             width: 100%;
-            min-width: 900px;
+            min-width: 850px;
             border-collapse: collapse;
         }
 
         thead {
-            background: #f9fafb;
+            background: #f8fffa;
         }
 
         th {
-            padding: 12px 18px;
+            padding: 14px 18px;
             text-align: left;
-            color: #6b7280;
-            font-size: 10px;
-            font-weight: 700;
+            color: #14532d;
+            font-size: 11px;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: .05em;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #dcfce7;
         }
 
         td {
-            padding: 14px 18px;
-            border-bottom: 1px solid #f1f5f9;
-            font-size: 12px;
+            padding: 15px 18px;
+            border-bottom: 1px solid #f0fdf4;
+            font-size: 13px;
             color: #374151;
             vertical-align: middle;
         }
 
         tbody tr {
-            transition: .15s ease;
+            transition: 0.2s;
         }
 
         tbody tr:hover {
-            background: #f8fafc;
+            background: #f8fffa;
         }
 
         tbody tr:last-child td {
             border-bottom: none;
         }
 
+        /* =========================
+           PRODUCT
+        ========================= */
+
         .id {
-            color: #2563eb;
-            font-weight: 700;
+            color: #16a34a;
+            font-weight: bold;
         }
 
         .product {
@@ -360,49 +257,48 @@
         }
 
         .product-image {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            background: #eff6ff;
-            color: #2563eb;
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: #ecfdf5;
+            color: #16a34a;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 15px;
+            font-size: 17px;
         }
 
         .product-name {
-            color: #111827;
-            font-weight: 650;
+            color: #14532d;
+            font-weight: bold;
         }
 
         .description {
             max-width: 250px;
-            color: #6b7280;
+            color: #64748b;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .price {
-            color: #111827;
-            font-weight: 700;
+            color: #14532d;
+            font-weight: bold;
         }
 
         .quantity {
             display: inline-flex;
-            align-items: center;
-            padding: 5px 9px;
-            border-radius: 6px;
-            background: #f3f4f6;
-            color: #374151;
-            font-size: 11px;
-            font-weight: 700;
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: #ecfdf5;
+            color: #166534;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .created {
-            color: #9ca3af;
-            font-size: 11px;
+            color: #6b7280;
+            font-size: 12px;
         }
 
         /* =========================
@@ -411,28 +307,28 @@
 
         .actions {
             display: flex;
-            gap: 5px;
+            gap: 6px;
         }
 
         .action {
-            width: 31px;
-            height: 31px;
+            width: 32px;
+            height: 32px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 7px;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 12px;
-            transition: .2s ease;
+            font-size: 13px;
+            transition: 0.2s;
         }
 
         .edit {
-            background: #fff7ed;
-            color: #ea580c;
+            background: #ecfdf5;
+            color: #16a34a;
         }
 
         .edit:hover {
-            background: #ffedd5;
+            background: #dcfce7;
         }
 
         .delete {
@@ -445,11 +341,11 @@
         }
 
         /* =========================
-           EMPTY
+           EMPTY STATE
         ========================= */
 
         .empty {
-            padding: 65px 20px;
+            padding: 60px 20px;
             text-align: center;
         }
 
@@ -458,7 +354,7 @@
             height: 55px;
             margin: 0 auto 12px;
             border-radius: 12px;
-            background: #eff6ff;
+            background: #ecfdf5;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -466,38 +362,39 @@
         }
 
         .empty h3 {
-            font-size: 14px;
-            color: #111827;
+            font-size: 16px;
+            color: #14532d;
         }
 
         .empty p {
-            margin-top: 4px;
-            font-size: 11px;
-            color: #9ca3af;
+            margin-top: 5px;
+            font-size: 13px;
+            color: #6b7280;
         }
 
         /* =========================
-           FOOTER
+           CARD FOOTER
         ========================= */
 
-        .panel-footer {
-            padding: 15px 22px;
-            border-top: 1px solid #e5e7eb;
+        .card-footer {
+            padding: 18px 30px;
+            background: #f8fffa;
+            border-top: 1px solid #dcfce7;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .panel-footer p {
-            color: #9ca3af;
-            font-size: 10px;
+        .card-footer p {
+            color: #6b7280;
+            font-size: 12px;
         }
 
         .footer-add {
-            color: #2563eb;
+            color: #16a34a;
             text-decoration: none;
-            font-size: 11px;
-            font-weight: 650;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .footer-add:hover {
@@ -505,68 +402,67 @@
         }
 
         /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        /* =========================
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 850px) {
 
             .stats {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .user-box {
-                display: none;
+            .page-header {
+                align-items: flex-start;
+                gap: 15px;
             }
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 650px) {
 
-            .sidebar {
-                width: 70px;
-                padding: 20px 9px;
+            .navbar {
+                height: auto;
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 12px;
             }
 
-            .brand {
+            .nav-links {
+                width: 100%;
                 justify-content: center;
-                padding: 5px 0 25px;
+                flex-wrap: wrap;
             }
 
-            .brand-text,
-            .section-title,
-            .nav a span:not(.nav-icon) {
-                display: none;
+            .nav-links a {
+                padding: 8px 12px;
             }
 
-            .nav a {
-                justify-content: center;
-                padding: 0;
-            }
-
-            .main {
-                margin-left: 70px;
-                padding: 22px;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .main {
+            .container {
+                margin: 30px auto;
                 padding: 15px;
             }
 
-            .header {
+            .page-header {
                 flex-direction: column;
-                align-items: flex-start;
-                gap: 14px;
             }
 
-            .header-right {
-                width: 100%;
+            .page-header h1 {
+                font-size: 26px;
             }
 
             .add-btn {
                 width: 100%;
-                justify-content: center;
+                text-align: center;
             }
 
             .stats {
@@ -575,22 +471,21 @@
             }
 
             .stat-card {
-                padding: 13px;
+                padding: 15px;
             }
 
-            .stat-value {
-                font-size: 18px;
+            .card-header {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
             }
 
-            .panel-header {
+            .card-footer {
+                padding: 18px 20px;
+                flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
-            }
-
-            .panel-footer {
-                align-items: flex-start;
-                gap: 8px;
-                flex-direction: column;
             }
         }
     </style>
@@ -599,128 +494,76 @@
 
 <body>
 
-<!-- =========================
-     SIDEBAR
-========================= -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
-<aside class="sidebar">
+    <nav class="navbar">
 
-    <div class="brand">
-
-        <div class="brand-icon">
-            PS
+        <div class="logo">
+            Student Portal
         </div>
 
-        <div class="brand-text">
-            <h2>Product System</h2>
-            <p>LavaLust System</p>
+        <div class="nav-links">
+
+            <a href="<?= site_url('student'); ?>">
+                Home
+            </a>
+
+            <a href="<?= site_url('student/profile'); ?>">
+                Profile
+            </a>
+
+            <a href="<?= site_url('products'); ?>" class="active">
+                Products
+            </a>
+
+            <a href="#">
+                Users
+            </a>
+
         </div>
-
-    </div>
-
-
-    <div class="section-title">
-        Main
-    </div>
-
-    <nav class="nav">
-
-        <a href="<?= site_url('products'); ?>" class="active">
-            <span class="nav-icon">📦</span>
-            <span>Products</span>
-        </a>
-
-        <a href="<?= site_url('products/create'); ?>">
-            <span class="nav-icon">＋</span>
-            <span>Add Product</span>
-        </a>
 
     </nav>
 
 
-    <div class="section-title">
-        System
-    </div>
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
 
-    <nav class="nav">
+    <main class="container">
 
-        <a href="#">
-            <span class="nav-icon">👤</span>
-            <span>Users</span>
-        </a>
+        <!-- PAGE HEADER -->
 
-        <a href="#">
-            <span class="nav-icon">⚙</span>
-            <span>Settings</span>
-        </a>
+        <div class="page-header">
 
-        <a href="#">
-            <span class="nav-icon">↪</span>
-            <span>Logout</span>
-        </a>
+            <div>
 
-    </nav>
+                <h1>Products</h1>
 
-</aside>
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main class="main">
-
-    <!-- HEADER -->
-
-    <header class="header">
-
-        <div class="header-left">
-
-            <h1>Products</h1>
-
-            <p>
-                Manage your products and monitor inventory.
-            </p>
-
-        </div>
-
-
-        <div class="header-right">
-
-            <div class="user-box">
-
-                <div class="user-avatar">
-                    U
-                </div>
-
-                <div class="user-info">
-                    <strong>Administrator</strong>
-                    <span>Product Manager</span>
-                </div>
+                <p>
+                    Manage your products and monitor inventory.
+                </p>
 
             </div>
-
 
             <a
                 href="<?= site_url('products/create'); ?>"
                 class="add-btn">
 
-                ＋ Add Product
+                + Add Product
 
             </a>
 
         </div>
 
-    </header>
 
+        <!-- STATISTICS -->
 
-    <!-- STATISTICS -->
+        <section class="stats">
 
-    <section class="stats">
+            <div class="stat-card">
 
-        <div class="stat-card">
-
-            <div>
                 <div class="stat-label">
                     Total Products
                 </div>
@@ -728,18 +571,12 @@
                 <div class="stat-value">
                     <?= count($products); ?>
                 </div>
+
             </div>
 
-            <div class="stat-icon">
-                📦
-            </div>
 
-        </div>
+            <div class="stat-card">
 
-
-        <div class="stat-card">
-
-            <div>
                 <div class="stat-label">
                     Total Stock
                 </div>
@@ -757,18 +594,12 @@
                     ?>
 
                 </div>
+
             </div>
 
-            <div class="stat-icon">
-                📊
-            </div>
 
-        </div>
+            <div class="stat-card">
 
-
-        <div class="stat-card">
-
-            <div>
                 <div class="stat-label">
                     Available Items
                 </div>
@@ -788,18 +619,12 @@
                     ?>
 
                 </div>
+
             </div>
 
-            <div class="stat-icon">
-                ✓
-            </div>
 
-        </div>
+            <div class="stat-card">
 
-
-        <div class="stat-card">
-
-            <div>
                 <div class="stat-label">
                     Out of Stock
                 </div>
@@ -819,146 +644,159 @@
                     ?>
 
                 </div>
-            </div>
-
-            <div class="stat-icon">
-                ⚠
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PRODUCT PANEL -->
-
-    <section class="panel">
-
-        <div class="panel-header">
-
-            <div class="panel-title">
-
-                <h2>Product List</h2>
-
-                <p>
-                    All products currently stored in the system.
-                </p>
 
             </div>
 
-            <div class="record-badge">
-                <?= count($products); ?> Records
+        </section>
+
+
+        <!-- PRODUCT CARD -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>Product List</h2>
+
+                    <p>
+                        All products currently stored in the system.
+                    </p>
+
+                </div>
+
+                <div class="record-badge">
+                    <?= count($products); ?> Records
+                </div>
+
             </div>
 
-        </div>
+
+            <!-- TABLE -->
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
 
 
-        <!-- TABLE -->
+                    <tbody>
 
-        <div class="table-container">
+                    <?php if (!empty($products)): ?>
 
-            <table>
+                        <?php foreach ($products as $product): ?>
 
-                <thead>
+                            <tr>
 
-                    <tr>
-                        <th>ID</th>
-                        <th>Product</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                        <th>Created</th>
-                        <th>Actions</th>
-                    </tr>
-
-                </thead>
+                                <td class="id">
+                                    #<?= htmlspecialchars($product['id']) ?>
+                                </td>
 
 
-                <tbody>
+                                <td>
 
-                <?php if (!empty($products)): ?>
+                                    <div class="product">
 
-                    <?php foreach ($products as $product): ?>
+                                        <div class="product-image">
+                                            📦
+                                        </div>
+
+                                        <div class="product-name">
+                                            <?= htmlspecialchars($product['product_name']) ?>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+                                <td class="description">
+                                    <?= htmlspecialchars($product['description']) ?>
+                                </td>
+
+
+                                <td class="price">
+                                    ₱<?= htmlspecialchars($product['price']) ?>
+                                </td>
+
+
+                                <td>
+
+                                    <span class="quantity">
+                                        <?= htmlspecialchars($product['quantity']) ?>
+                                    </span>
+
+                                </td>
+
+
+                                <td class="created">
+                                    <?= htmlspecialchars($product['created_at']) ?>
+                                </td>
+
+
+                                <td>
+
+                                    <div class="actions">
+
+                                        <a
+                                            href="<?= site_url('products/edit/' . $product['id']); ?>"
+                                            class="action edit"
+                                            title="Edit">
+
+                                            ✎
+
+                                        </a>
+
+
+                                        <a
+                                            href="<?= site_url('products/delete/' . $product['id']); ?>"
+                                            class="action delete"
+                                            title="Delete"
+                                            onclick="return confirm('Are you sure you want to delete this product?');">
+
+                                            🗑
+
+                                        </a>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endforeach; ?>
+
+                    <?php else: ?>
 
                         <tr>
 
-                            <td class="id">
-                                #<?= htmlspecialchars($product['id']) ?>
-                            </td>
+                            <td colspan="7">
 
+                                <div class="empty">
 
-                            <td>
-
-                                <div class="product">
-
-                                    <div class="product-image">
+                                    <div class="empty-icon">
                                         📦
                                     </div>
 
-                                    <div class="product-name">
-                                        <?= htmlspecialchars($product['product_name']) ?>
-                                    </div>
+                                    <h3>No Products Found</h3>
 
-                                </div>
-
-                            </td>
-
-
-                            <td class="description">
-
-                                <?= htmlspecialchars($product['description']) ?>
-
-                            </td>
-
-
-                            <td class="price">
-
-                                ₱<?= htmlspecialchars($product['price']) ?>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="quantity">
-
-                                    <?= htmlspecialchars($product['quantity']) ?>
-
-                                </span>
-
-                            </td>
-
-
-                            <td class="created">
-
-                                <?= htmlspecialchars($product['created_at']) ?>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="actions">
-
-                                    <a
-                                        href="<?= site_url('products/edit/' . $product['id']); ?>"
-                                        class="action edit"
-                                        title="Edit">
-
-                                        ✎
-
-                                    </a>
-
-
-                                    <a
-                                        href="<?= site_url('products/delete/' . $product['id']); ?>"
-                                        class="action delete"
-                                        title="Delete"
-                                        onclick="return confirm('Are you sure you want to delete this product?');">
-
-                                        🗑
-
-                                    </a>
+                                    <p>
+                                        Start by adding your first product.
+                                    </p>
 
                                 </div>
 
@@ -966,62 +804,45 @@
 
                         </tr>
 
-                    <?php endforeach; ?>
+                    <?php endif; ?>
 
-                <?php else: ?>
+                    </tbody>
 
-                    <tr>
+                </table>
 
-                        <td colspan="7">
+            </div>
 
-                            <div class="empty">
 
-                                <div class="empty-icon">
-                                    📦
-                                </div>
+            <!-- CARD FOOTER -->
 
-                                <h3>No Products Found</h3>
+            <div class="card-footer">
 
-                                <p>
-                                    Start by adding your first product.
-                                </p>
+                <p>
+                    Product information is retrieved dynamically from the database.
+                </p>
 
-                            </div>
+                <a
+                    href="<?= site_url('products/create'); ?>"
+                    class="footer-add">
 
-                        </td>
+                    + Add another product
 
-                    </tr>
+                </a>
 
-                <?php endif; ?>
+            </div>
 
-                </tbody>
-
-            </table>
-
-        </div>
+        </section>
 
 
         <!-- FOOTER -->
 
-        <div class="panel-footer">
+        <div class="footer">
 
-            <p>
-                Product information is retrieved dynamically from the database.
-            </p>
-
-            <a
-                href="<?= site_url('products/create'); ?>"
-                class="footer-add">
-
-                + Add another product
-
-            </a>
+            Student Information System &copy; <?= date('Y'); ?>
 
         </div>
 
-    </section>
-
-</main>
+    </main>
 
 </body>
 
