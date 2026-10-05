@@ -42,7 +42,31 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 |
 */
-/** @var object $router **/
+// -------------------------------------------------------
+// REST API Routes (for React frontend)
+// -------------------------------------------------------
+
+// Auth
+$router->post('/api/login',   'ApiAuthController::login');
+$router->post('/api/logout',  'ApiAuthController::logout');
+$router->post('/api/refresh', 'ApiAuthController::refresh');
+$router->get('/api/me',       'ApiAuthController::me');
+
+// Products (protected by JWT inside controller)
+$router->get('/api/products',        'ApiProductController::index');
+$router->get('/api/products/{id}',   'ApiProductController::show');
+$router->post('/api/products',       'ApiProductController::store');
+$router->put('/api/products/{id}',   'ApiProductController::update');
+$router->patch('/api/products/{id}', 'ApiProductController::update');
+$router->delete('/api/products/{id}','ApiProductController::destroy');
+
+// Migration Routes
+$router->get('create-migration/{migration_class}', 'MigrationController::create_migration');
+$router->get('migrate', 'MigrationController::migrate');
+$router->get('rollback', 'MigrationController::rollback');
+$router->get('rollback-all', 'MigrationController::rollback_all');
+$router->get('refresh', 'MigrationController::refresh');
+$router->get('status', 'MigrationController::status');
 
 $router->get('/', 'StudentController::index');
 

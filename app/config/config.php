@@ -79,9 +79,10 @@ $config['environment'] = getenv('APP_ENV') ?: 'development';
 | WARNING: You MUST set this value!
 |
 */
+$http_host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $config['base_url'] = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http')
-                    . '://' . $_SERVER['HTTP_HOST']
-                    . (($_SERVER['HTTP_HOST'] === 'localhost') ? '/LavaLust/' : '/');
+                    . '://' . $http_host
+                    . (($http_host === 'localhost') ? '/LavaLust/' : '/');
 
 /*
 |--------------------------------------------------------------------------

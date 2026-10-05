@@ -6,6 +6,7 @@ define('APP_DIR', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_
 define('PUBLIC_DIR', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR);
 define('RUNTIME_DIR', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'runtime' . DIRECTORY_SEPARATOR);
 define('COMMANDS_DIR', APP_DIR . 'commands' . DIRECTORY_SEPARATOR);
+define('COMMAND_DIR', APP_DIR . 'command' . DIRECTORY_SEPARATOR);
 
 // Command Registry
 $commands = [];
@@ -95,10 +96,11 @@ if (!isset($commands[$command])) {
     exit;
 }
 
-call_user_func($commands[$command]['handler'], $input, $flags);
+$additional_args = array_slice($positional, 1);
+call_user_func_array($commands[$command]['handler'], array_merge([$input, $flags], $additional_args));
 
 /**
- * Scan app/commands/ for classes that declare:
+ * Scan app/commands/ and app/command/ for classes that declare:
  *   public static $command     = 'name:of:command'
  *   public static $description = 'What this does'          (optional)
  *   public static $arguments   = ['--flag' => 'desc', ...]  (optional)
@@ -107,43 +109,46 @@ call_user_func($commands[$command]['handler'], $input, $flags);
  * Files that do not follow the convention are silently skipped.
  */
 function autoload_commands() {
-    if (!is_dir(COMMANDS_DIR)) return;
+    $directories = [COMMANDS_DIR, COMMAND_DIR];
+    foreach ($directories as $dir) {
+        if (!is_dir($dir)) continue;
 
-    $files = glob(COMMANDS_DIR . '*.php');
-    if (empty($files)) return;
+        $files = glob($dir . '*.php');
+        if (empty($files)) continue;
 
-    foreach ($files as $file) {
-        // Track classes defined before this require
-        $before = get_declared_classes();
-        require_once $file;
-        $after = get_declared_classes();
+        foreach ($files as $file) {
+            // Track classes defined before this require
+            $before = get_declared_classes();
+            require_once $file;
+            $after = get_declared_classes();
 
-        $new_classes = array_diff($after, $before);
+            $new_classes = array_diff($after, $before);
 
-        foreach ($new_classes as $class) {
-            $ref = new ReflectionClass($class);
+            foreach ($new_classes as $class) {
+                $ref = new ReflectionClass($class);
 
-            // Must have a static $command property with a non-empty string
-            if (!$ref->hasProperty('command')) continue;
+                // Must have a static $command property with a non-empty string
+                if (!$ref->hasProperty('command')) continue;
 
-            $cmd_name = $ref->getStaticPropertyValue('command');
-            if (empty($cmd_name) || !is_string($cmd_name)) continue;
+                $cmd_name = $ref->getStaticPropertyValue('command');
+                if (empty($cmd_name) || !is_string($cmd_name)) continue;
 
-            $description = $ref->hasProperty('description')
-                ? $ref->getStaticPropertyValue('description')
-                : '';
+                $description = $ref->hasProperty('description')
+                    ? $ref->getStaticPropertyValue('description')
+                    : '';
 
-            $arguments = $ref->hasProperty('arguments')
-                ? $ref->getStaticPropertyValue('arguments')
-                : [];
+                $arguments = $ref->hasProperty('arguments')
+                    ? $ref->getStaticPropertyValue('arguments')
+                    : [];
 
-            // Handler: [instance, 'handle']
-            register_command(
-                $cmd_name,
-                [new $class, 'handle'],
-                $description,
-                is_array($arguments) ? $arguments : []
-            );
+                // Handler: [instance, 'handle']
+                register_command(
+                    $cmd_name,
+                    [new $class, 'handle'],
+                    $description,
+                    is_array($arguments) ? $arguments : []
+                );
+            }
         }
     }
 }
@@ -296,7 +301,7 @@ function handle_make_command($name, array $flags = []) {
     $command_name = strtolower(ltrim(preg_replace('/[A-Z]/', ':\0', $name), ':'));
     $command_name = preg_replace('/:+/', ':', $command_name);
 
-    $folder    = COMMANDS_DIR;
+    $folder    = COMMAND_DIR;
     $file_path = $folder . "{$class_name}.php";
 
     if (!is_dir($folder)) mkdir($folder, 0777, true);

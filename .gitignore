@@ -1,8 +1,11 @@
 # macOS
 .DS_Store
 
-# Environment
+# Environment (NEVER commit credentials)
 .env
+.env.aiven
+.env.local
+.env.production
 !.env.example
 
 # Dependencies
@@ -24,3 +27,7 @@ runtime/*
 
 # OS
 Thumbs.db
+
+# Frontend node_modules & build (React is separate repo or built separately)
+frontend/node_modules/
+frontend/.env
