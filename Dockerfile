@@ -1,5 +1,14 @@
 ARG PHP_VERSION=8.2
 
+# Stage 1: Build React Frontend
+FROM node:20-alpine AS frontend-builder
+WORKDIR /app
+COPY frontend/package*.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
+# Stage 2: Apache PHP App
 FROM php:${PHP_VERSION}-apache
 
 # Install PDO MySQL extension
@@ -10,6 +19,9 @@ RUN a2enmod rewrite
 
 # Copy project files
 COPY . /var/www/html/
+
+# Copy built frontend assets from builder stage
+COPY --from=frontend-builder /public/dist /var/www/html/public/dist
 
 # Set DocumentRoot to public directory
 RUN sed -i 's#DocumentRoot /var/www/html#DocumentRoot /var/www/html/public#' \

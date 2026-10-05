@@ -68,7 +68,7 @@ $router->get('rollback-all', 'MigrationController::rollback_all');
 $router->get('refresh', 'MigrationController::refresh');
 $router->get('status', 'MigrationController::status');
 
-$router->get('/', 'StudentController::index');
+$router->get('/', 'ReactController::index');
 
 $router->get('/student', 'StudentController::index');
 
