@@ -17,6 +17,7 @@ class MigrationController extends Controller
     public function migrate()
     {
         $this->migration->migrate();
+        echo "Database migration completed successfully! Default admin user (admin / admin123) and sample products have been seeded.";
     }
 
     public function rollback()
