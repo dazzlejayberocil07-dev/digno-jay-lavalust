@@ -44,7 +44,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 | below (see their notes). The API library refuses to start otherwise.
 |
 */
-$config['api_helper_enabled'] = FALSE;
+$config['api_helper_enabled'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -87,7 +87,7 @@ $config['refresh_token_expiration'] = 604800;
 | committed or exposed, rotate it. All existing tokens become invalid.
 |
 */
-$config['jwt_secret'] = getenv('JWT_SECRET') ?: '';
+$config['jwt_secret'] = getenv('JWT_SECRET') ?: 'cbTsnJDxCodakDxh4M3qd5Sn3Kd2cYCDp4MEu0DAPxx';
 
 /*
 |--------------------------------------------------------------------------
@@ -106,7 +106,7 @@ $config['jwt_secret'] = getenv('JWT_SECRET') ?: '';
 |   php -r "echo bin2hex(random_bytes(32));"
 |
 */
-$config['refresh_token_key'] = getenv('REFRESH_TOKEN_KEY') ?: '';
+$config['refresh_token_key'] = getenv('REFRESH_TOKEN_KEY') ?: '0bNvxjPFJ6dhi1Ttf7AStp95zUcd1iy94mjblklwfPs';
 
 /*
 |--------------------------------------------------------------------------
