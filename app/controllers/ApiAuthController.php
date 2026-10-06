@@ -56,21 +56,30 @@ class ApiAuthController extends Controller
         } catch (\Throwable $e) {
             // Attempt to run migrations if tables don't exist
             try {
+                if (ob_get_level() > 0) {
+                    @ob_end_clean();
+                }
+                ob_start();
                 $this->call->library('migration');
                 $this->migration->migrate();
-                $this->db->table('users')->insert([
-                    'username'  => 'admin',
-                    'email'     => 'admin@example.com',
-                    'password'  => password_hash('admin123', PASSWORD_DEFAULT),
-                    'role'      => 'admin',
-                    'is_active' => 1
-                ]);
+                ob_end_clean();
+
                 $user = $this->db->table('users')->where('username', 'admin')->get();
+                if (!$user) {
+                    $this->db->table('users')->insert([
+                        'username'  => 'admin',
+                        'email'     => 'admin@example.com',
+                        'password'  => password_hash('admin123', PASSWORD_DEFAULT),
+                        'role'      => 'admin',
+                        'is_active' => 1
+                    ]);
+                    $user = $this->db->table('users')->where('username', 'admin')->get();
+                }
             } catch (\Throwable $migrationErr) {
-                $this->api->respond([
-                    'success' => false,
-                    'message' => 'Database initialization failed.'
-                ], 500);
+                if (ob_get_level() > 0) {
+                    @ob_end_clean();
+                }
+                $user = null;
             }
         }
 
