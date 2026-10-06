@@ -267,18 +267,19 @@ class Api
      */
     public function body()
     {
-        $contentType = $_SERVER['CONTENT_TYPE'] ?? '';
-
-        if (stripos($contentType, 'application/json') !== false) {
-            $input = json_decode(file_get_contents('php://input'), true);
-            return is_array($input) ? $this->sanitize_input($input) : [];
+        $raw = file_get_contents('php://input');
+        if (!empty($raw)) {
+            $decoded = json_decode($raw, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
+                return $this->sanitize_input($decoded);
+            }
         }
 
-        if ($_POST) {
+        if (!empty($_POST)) {
             return $this->sanitize_input($_POST);
         }
 
-        parse_str(file_get_contents('php://input'), $formData);
+        parse_str($raw, $formData);
         return $this->sanitize_input($formData ?? []);
     }
 
