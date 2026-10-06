@@ -39,6 +39,35 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 *  Class API
 * ------------------------------------------------------
  */
+if (!function_exists('handle_cors')) {
+    function handle_cors()
+    {
+        $origin = config_item('allow_origin') ?? '*';
+        if (isset($_SERVER['HTTP_ORIGIN'])) {
+            header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+        } else {
+            header("Access-Control-Allow-Origin: " . $origin);
+        }
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Max-Age: 86400");
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
+            header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+        }
+
+        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
+            header("Access-Control-Allow-Headers: " . $_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
+        } else {
+            header("Access-Control-Allow-Headers: Authorization, Content-Type, Accept, X-Requested-With");
+        }
+
+        if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            exit(0);
+        }
+    }
+}
+
 class Api
 {
     /**
