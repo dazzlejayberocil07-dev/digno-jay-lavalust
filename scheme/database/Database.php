@@ -269,9 +269,29 @@ class Database {
         );
 
         try {
-            $this->db = new PDO($dsn, $username, $password, $options);
+            if ($driver === 'sqlite') {
+                $this->db = new PDO($dsn, null, null, $options);
+            } else {
+                $this->db = new PDO($dsn, $username, $password, $options);
+            }
             $this->driver = $this->db->getAttribute(PDO::ATTR_DRIVER_NAME);
         } catch (Exception $e) {
+            // Fallback to SQLite if MySQL host connection fails
+            if ($driver === 'mysql') {
+                try {
+                    $sqliteDir = APP_DIR . 'runtime';
+                    if (!is_dir($sqliteDir)) {
+                        @mkdir($sqliteDir, 0777, true);
+                    }
+                    $sqlitePath = $sqliteDir . '/database.sqlite';
+                    $this->db = new PDO("sqlite:$sqlitePath", null, null, $options);
+                    $this->driver = 'sqlite';
+                    return;
+                } catch (Exception $sqliteEx) {
+                    // throw original exception if fallback fails
+                }
+            }
+
             $error = load_class('Errors', 'kernel');
             $error->show_database_error(
                 $e->getMessage(),

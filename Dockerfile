@@ -11,8 +11,8 @@ RUN npm run build
 # Stage 2: Apache PHP App
 FROM php:${PHP_VERSION}-apache
 
-# Install PDO MySQL extension
-RUN docker-php-ext-install pdo pdo_mysql
+# Install PDO MySQL & SQLite extensions
+RUN docker-php-ext-install pdo pdo_mysql pdo_sqlite
 
 # Enable Apache mod_rewrite module for LavaLust routing
 RUN a2enmod rewrite
