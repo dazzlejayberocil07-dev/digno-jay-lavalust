@@ -63,6 +63,7 @@ $router->delete('/api/products/{id}','ApiProductController::destroy');
 // Migration Routes
 $router->get('create-migration/{migration_class}', 'MigrationController::create_migration');
 $router->get('migrate', 'MigrationController::migrate');
+$router->get('seed', 'MigrationController::seed');
 $router->get('rollback', 'MigrationController::rollback');
 $router->get('rollback-all', 'MigrationController::rollback_all');
 $router->get('refresh', 'MigrationController::refresh');

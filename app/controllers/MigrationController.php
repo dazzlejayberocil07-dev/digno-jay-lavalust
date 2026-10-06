@@ -17,7 +17,58 @@ class MigrationController extends Controller
     public function migrate()
     {
         $this->migration->migrate();
-        echo "Database migration completed successfully! Default admin user (admin / admin123) and sample products have been seeded.";
+        $this->seed();
+    }
+
+    public function seed()
+    {
+        $this->call->database();
+        
+        // Ensure admin user exists with password admin123
+        $admin = $this->db->table('users')->where('username', 'admin')->get();
+        if (!$admin) {
+            $this->db->table('users')->insert([
+                'username'  => 'admin',
+                'email'     => 'admin@example.com',
+                'password'  => password_hash('admin123', PASSWORD_DEFAULT),
+                'role'      => 'admin',
+                'is_active' => 1
+            ]);
+            $msg = "Admin user created (admin / admin123). ";
+        } else {
+            $this->db->table('users')->where('username', 'admin')->update([
+                'password'  => password_hash('admin123', PASSWORD_DEFAULT),
+                'is_active' => 1
+            ]);
+            $msg = "Admin password set to admin123. ";
+        }
+
+        // Check products table
+        $count = $this->db->table('products')->count();
+        if ($count == 0) {
+            $this->db->table('products')->insert_batch([
+                [
+                    'product_name' => 'Wireless Gaming Mouse',
+                    'description'  => 'Ergonomic 16000 DPI RGB gaming mouse with ultra-fast sensor.',
+                    'price'        => 1499.00,
+                    'quantity'     => 25
+                ],
+                [
+                    'product_name' => 'Mechanical Keyboard',
+                    'description'  => 'Compact 75% hot-swappable keyboard with tactile switches.',
+                    'price'        => 2999.00,
+                    'quantity'     => 12
+                ],
+                [
+                    'product_name' => 'Curved Gaming Monitor 27"',
+                    'description'  => '165Hz 1ms QHD Curved Display with HDR support.',
+                    'price'        => 12499.00,
+                    'quantity'     => 5
+                ]
+            ]);
+        }
+
+        echo "SUCCESS: " . $msg . "Database is ready!";
     }
 
     public function rollback()
@@ -33,6 +84,7 @@ class MigrationController extends Controller
     public function refresh()
     {
         $this->migration->refresh();
+        $this->seed();
     }
 
     public function status()
