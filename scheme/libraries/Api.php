@@ -639,15 +639,19 @@ class Api
         // Hash for DB storage (secure + prevents exposure on DB breach)
         $hashed_refresh = hash_hmac('sha256', (string) $refresh_token, $this->refresh_token_key);
 
-        $this->cleanup_expired_refresh_tokens();
+        try {
+            $this->cleanup_expired_refresh_tokens();
 
-        $expires_at = date('Y-m-d H:i:s', $now + $this->refresh_token_expiration);
+            $expires_at = date('Y-m-d H:i:s', $now + $this->refresh_token_expiration);
 
-        $this->_lava->db->raw(
-            "INSERT INTO {$this->refresh_token_table} (user_id, token, expires_at, jti) 
-             VALUES (?, ?, ?, ?)",
-            [$user_id, $hashed_refresh, $expires_at, $refresh_payload['jti']]
-        );
+            $this->_lava->db->raw(
+                "INSERT INTO {$this->refresh_token_table} (user_id, token, expires_at, jti) 
+                 VALUES (?, ?, ?, ?)",
+                [$user_id, $hashed_refresh, $expires_at, $refresh_payload['jti']]
+            );
+        } catch (\Throwable $tokenErr) {
+            // Ignore if refresh_tokens table storage fails
+        }
 
         return [
             'access_token' => $access_token,
