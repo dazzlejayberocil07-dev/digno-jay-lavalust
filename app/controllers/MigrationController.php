@@ -46,7 +46,7 @@ class MigrationController extends Controller
         // Check products table
         $count = $this->db->table('products')->count();
         if ($count == 0) {
-            $this->db->table('products')->insert_batch([
+            $initial_products = [
                 [
                     'product_name' => 'Wireless Gaming Mouse',
                     'description'  => 'Ergonomic 16000 DPI RGB gaming mouse with ultra-fast sensor.',
@@ -65,7 +65,10 @@ class MigrationController extends Controller
                     'price'        => 12499.00,
                     'quantity'     => 5
                 ]
-            ]);
+            ];
+            foreach ($initial_products as $product) {
+                $this->db->table('products')->insert($product);
+            }
         }
 
         echo "SUCCESS: " . $msg . "Database is ready!";

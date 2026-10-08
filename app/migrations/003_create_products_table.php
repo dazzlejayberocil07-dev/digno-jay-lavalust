@@ -58,7 +58,7 @@ class Create_products_table {
         // Seed initial products if table is empty
         $count = $this->_lava->db->table('products')->count();
         if ($count == 0) {
-            $this->_lava->db->table('products')->insert_batch([
+            $initial_products = [
                 [
                     'product_name' => 'Wireless Gaming Mouse',
                     'description'  => 'Ergonomic 16000 DPI RGB gaming mouse with ultra-fast sensor.',
@@ -77,7 +77,10 @@ class Create_products_table {
                     'price'        => 12499.00,
                     'quantity'     => 5
                 ]
-            ]);
+            ];
+            foreach ($initial_products as $product) {
+                $this->_lava->db->table('products')->insert($product);
+            }
         }
     }
 
