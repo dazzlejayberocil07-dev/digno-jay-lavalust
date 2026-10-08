@@ -46,6 +46,9 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 // REST API Routes (for React frontend)
 // -------------------------------------------------------
 
+// Root - API Info (shows when visiting the API URL in browser)
+$router->get('/', 'ApiInfoController::index');
+
 // Auth
 $router->post('/api/login',   'ApiAuthController::login');
 $router->post('/api/logout',  'ApiAuthController::logout');
@@ -60,43 +63,11 @@ $router->put('/api/products/{id}',   'ApiProductController::update');
 $router->patch('/api/products/{id}', 'ApiProductController::update');
 $router->delete('/api/products/{id}','ApiProductController::destroy');
 
-// Migration Routes
-$router->get('create-migration/{migration_class}', 'MigrationController::create_migration');
-$router->get('migrate', 'MigrationController::migrate');
-$router->get('seed', 'MigrationController::seed');
-$router->get('rollback', 'MigrationController::rollback');
-$router->get('rollback-all', 'MigrationController::rollback_all');
-$router->get('refresh', 'MigrationController::refresh');
-$router->get('status', 'MigrationController::status');
+// -------------------------------------------------------
+// Migration Route (run once after deployment to set up DB)
+// Visit: https://digno-jay.onrender.com/migrate
+// -------------------------------------------------------
+$router->get('/migrate', 'MigrationController::migrate');
+$router->get('/seed',    'MigrationController::seed');
 
-$router->get('/', 'ReactController::index');
 
-$router->get('/student', 'StudentController::index');
-
-$router->get('/student/profile', 'StudentController::profile')
-       ->middleware('student');
-$router->get('/users', 'UsersController::index');
-
-$router->get('/login', 'AuthController::login');
-
-$router->post('/login/authenticate', 'AuthController::authenticate');
-
-$router->get('/logout', 'AuthController::logout');
-
-$router->get('/products', 'ProductController::index')
-       ->middleware('auth');
-
-$router->get('/products/create', 'ProductController::create')
-       ->middleware('auth');
-
-$router->post('/products/store', 'ProductController::store')
-       ->middleware('auth');
-
-$router->get('/products/edit/{id}', 'ProductController::edit')
-       ->middleware('auth');
-
-$router->post('/products/update/{id}', 'ProductController::update')
-       ->middleware('auth');
-
-$router->get('/products/delete/{id}', 'ProductController::delete')
-       ->middleware('auth');
